@@ -1,13 +1,12 @@
 .header, .footer {
-    position: fixed;
-    width: 100%;
+    
     height: 4em;
 }
 
 .header {    
-    top: 0;
+   
 }
 
 .footer {
-    bottom: 0;
+    
 }
