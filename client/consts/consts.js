@@ -1,0 +1,1 @@
+export const RELATIVE_URL ="/miMail/client/pages";
