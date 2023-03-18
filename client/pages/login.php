@@ -13,12 +13,16 @@
         <div class="form-container">
             <form>
                 <div class="input-container">
-                <label for="input-username">Username</label><br>
-                <input id="input-username" name="username" type="text" />
+                    <label for="input-username">Username</label><br>
+                    <input id="input-username" name="username" type="text" />
                 </div>
                 <div>
-                <label for="input-password">Password</label><br>
-                <input id="input-password" name="password" type="password" />
+                    <label for="input-password">Password</label><br>
+                    <input id="input-password" name="password" type="password" />
+                </div>
+                <div class="btns-container">
+                    <button type="button">Login</button>
+                    <button type="button" onClick=(fRedirectRegister)>Register</button>
                 </div>
             </form>
         </div>
