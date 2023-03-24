@@ -1,3 +1,2 @@
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [L]
+RewriteRule ^api/(.*) /php/controller/ApiController.php [NC,L]
