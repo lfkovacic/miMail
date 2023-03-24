@@ -1,0 +1,49 @@
+html,
+
+body
+{
+    margin: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+}
+div {
+    border: 4px solid yellow;
+}
+.content {
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+.menu{
+    width: 20%;
+    display: flex;
+    box-sizing: border-box;
+}
+.header{
+    width: 100%;
+    height: 10%;
+}
+.footer{
+    width: 100%;
+    height: 10%;
+}
+.filter{
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+}
+.prikaz{
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    height: 80%;
+}
