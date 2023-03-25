@@ -1,2 +1,3 @@
 <?php
-echo "welcome to welcome";
+$rootDirectory = $_SERVER['DOCUMENT_ROOT'];
+echo $rootDirectory;
