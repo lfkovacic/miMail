@@ -11,18 +11,18 @@
     <div class="content">
         <?php include('../elements/header.php'); ?>
         <div class="form-container">
-            <form>
+            <form id="login-form">
                 <div class="input-container">
                     <label for="input-username">Username</label><br>
                     <input id="input-username" name="username" type="text" />
                 </div>
-                <div>
+                <div class="input-container">
                     <label for="input-password">Password</label><br>
                     <input id="input-password" name="password" type="password" />
                 </div>
-                <div class="btns-container">
-                    <button id="login-button" type="button" onClick={fLogin()}>Login</button>
-                    <button type="button" onClick={fRegister()}>Register</button>
+                <div id="btns-container" class="btns-container">
+                    <button id="login-button" type="button">Login</button>
+                    <button id="register-button" type="button">Register</button>
                 </div>
             </form>
         </div>
