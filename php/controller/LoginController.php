@@ -13,10 +13,6 @@ class EchoUser extends Endpoint {
         }
     }
 
-	/**
-	 * @param mixed $dto
-	 * @return mixed
-	 */
 	protected function execute($dto) {
         header('Content-Type: application/json');
         $data = array('username' => $dto->username, 'password' => $dto->password);
