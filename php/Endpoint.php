@@ -29,8 +29,5 @@ abstract class Endpoint
         }
     }
 
-    protected function parseRequest(&$dto)
-    {
-        // Implement this in your subclass to parse the request
-    }
+    abstract protected function parseRequest(&$dto);
 }
