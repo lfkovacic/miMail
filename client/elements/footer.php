@@ -1,3 +1,1 @@
-<div class="footer">
-    TODO: footer
-</div>
+<div class="footer">Link</div>

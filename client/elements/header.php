@@ -1,3 +1,1 @@
-<div class="header">
-    TODO: header
-</div>
+<div class="header">Menu</div>
