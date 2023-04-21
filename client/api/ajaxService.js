@@ -1,16 +1,6 @@
 const ajaxService = {};
 
-ajaxService.sendRequest = function(method, url, data, headers={}, responseType='json') {
-  if (method === 'GET' && data instanceof Object) {
-    const queryParams = new URLSearchParams();
-    for (const key in data) {
-      if (Object.prototype.hasOwnProperty.call(data, key)) {
-        queryParams.append(key, data[key]);
-      }
-    }
-    url = url + '?' + queryParams.toString();
-  }
-  
+ajaxService.sendRequest = function (method, url, data, headers = {}, responseType = 'json') {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
 
@@ -22,7 +12,7 @@ ajaxService.sendRequest = function(method, url, data, headers={}, responseType='
 
     xhr.responseType = responseType;
 
-    xhr.onload = function() {
+    xhr.onload = function () {
       if (xhr.status === 200) {
         resolve(xhr.response);
       } else {
@@ -30,11 +20,26 @@ ajaxService.sendRequest = function(method, url, data, headers={}, responseType='
       }
     };
 
-    xhr.onerror = function() {
+    xhr.onerror = function () {
       reject("Network Error");
     };
 
-    xhr.send(method === 'GET' ? null : data);
+    if (method === 'GET') {
+      if (data instanceof Object) {
+        const queryParams = new URLSearchParams();
+        for (const key in data) {
+          if (Object.prototype.hasOwnProperty.call(data, key)) {
+            queryParams.append(key, data[key]);
+          }
+        }
+        url = url + '?' + queryParams.toString();
+      }
+      xhr.send();
+    } else if (method === 'POST') {
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify(data));
+    }
   });
 };
+
 export default ajaxService;
