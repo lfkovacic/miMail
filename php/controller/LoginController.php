@@ -32,9 +32,12 @@ class RegisterUser extends Endpoint {
     }
 
     protected function execute($dto){
+        $userService = new UserService();
         header('Content-Type: application/json');
         $data = array('username' => $dto->username, 'password' => $dto->password);
-        echo json_encode($data);
+        $sql_response = $userService->registerUser($dto->username, $dto->password);
+        echo $sql_response;
+        
     }
 }
 
