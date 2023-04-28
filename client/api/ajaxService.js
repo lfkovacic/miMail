@@ -43,3 +43,4 @@ ajaxService.sendRequest = function (method, url, data, headers = {}, responseTyp
 };
 
 export default ajaxService;
+ 

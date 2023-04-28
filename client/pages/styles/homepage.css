@@ -3,7 +3,7 @@ html,
 body
 {
     margin: 0;
-    height: 100vh;
+    height: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -21,7 +21,8 @@ div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
+    
 }
 .menu{
     width: 20%;

@@ -52,14 +52,25 @@ const fSubmitRegister = async () => {
   const password = document.getElementById('input-password').value;
   userObj.username = username;
   userObj.password = password;
+  const password2 = document.getElementById('input-repeat-password').value;
+  console.log(password);
+  console.log(password2);
 
-  loginService.submitUserRegister(userObj)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+
+  if (!(username === "" || password === "" || password2 === "")&&(password === password2)) {
+    loginService.submitUserRegister(userObj)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  else if (!(password === password2))
+
+    console.error('Lozinke se ne poklapaju!');
+  else
+    console.error("Molimo popuniti sve podatke!")
 }
 
 registerButton.addEventListener("click", fRegister);
