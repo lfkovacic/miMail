@@ -6,8 +6,23 @@ let registerMode = false;
 
 const loginButton = document.getElementById("login-button");
 const fLogin = () => {
-  console.log("test");
-  window.location.href = RELATIVE_URL + "/homepage.php";
+  const userObj = {};
+  const username = document.getElementById('input-username').value;
+  const password = document.getElementById('input-password').value;
+  userObj.username = username;
+  userObj.password = password;
+  if (!(username === "" || password === "" )) {
+    loginService.authenticateUser(userObj)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
+  console.log(password);
+  
+ // window.location.href = RELATIVE_URL + "/homepage.php";
 }
 loginButton.addEventListener("click", fLogin);
 
