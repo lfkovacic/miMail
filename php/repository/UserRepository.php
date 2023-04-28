@@ -25,4 +25,13 @@ class UserRepository extends Repository
             return array();
         }
     }
+
+    public function registerUser($username, $pwd_hash){
+        $sql =  "INSERT INTO user (USERNAME, PWD_HASH) ".
+                "VALUES ('".$username."', '".$pwd_hash."')";
+        $conn = parent::connect();
+        $result = $conn->query($sql);
+        
+        return $result;
+    }
 }
