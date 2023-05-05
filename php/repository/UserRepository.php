@@ -9,8 +9,7 @@ class UserRepository extends Repository
         parent::__construct("USER"); //Naziv tablice        
     }
 
-    public function getUser($username)
-    {
+    public function getUser($username){
         $sql = "SELECT u.* FROM USER u WHERE u.username LIKE '".$username."'";
         $conn = parent::connect();
         $result = $conn->query($sql);
@@ -35,3 +34,4 @@ class UserRepository extends Repository
         return $result;
     }
 }
+

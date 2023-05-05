@@ -48,8 +48,7 @@ class AuthenticateUser extends Endpoint {
         $json = file_get_contents('php://input');
 
         // Decode JSON object into associative array
-        $data = json_decode($json, true);
-        
+        $data = json_decode($json, true);        
 
         // Assign properties to DTO object
         $dto->username = $data['username'];
