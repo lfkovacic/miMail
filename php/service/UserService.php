@@ -16,8 +16,6 @@ class UserService {
         } else return false;
     }
 
-    public function getUserByUsername(){}
-
     public function registerUser($username, $pwd_hash){
         $sql_response = $this->userRepository->registerUser($username, $pwd_hash);
         return $sql_response;
