@@ -1,7 +1,32 @@
-html,
+html {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
 body {
     margin: 0;
     height: 100vh;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: first baseline
+}
+
+.header,
+.footer {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.header .header-text,
+.footer .footer-text {
+    color: black;
+    font: 20pt bold;
+    display: flex;
     box-sizing: border-box;
 }
 
@@ -14,31 +39,55 @@ div {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .form-container {
-    display:inline-flex;
+    display: inline-flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 240px;
+    width: 340px;
     padding: 20px;
-    border: 4px solid yellow;
+    border: 4px solid rgba(255, 123, 0, 0.774);
 }
 
-.btns-container{
-    padding: 4px;
-    box-sizing: border-box;
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    justify-content: center;
+    align-items: center;
+    width: 240px;
+}
+
+.input-container input {
+    height: 24px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.btns-container {
+    margin-top: 8px;
     display: flex;
     width: 100%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border: 2px black;
 }
 
 button {
-    display: flex;
-    margin:auto;
+
+    margin: auto;
+    font-family: 'Times New Roman', Times, serif;
+    height: 100%;
+    width: 50%;
+    border: 4px solid #ff0;
+    background-color: #fff;
+    text-align: center;
+    padding: 4px;
+    font: 12pt bold;
 }
+

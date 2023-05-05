@@ -1,4 +1,6 @@
-.header, .footer {
-    
+.header, .footer {  
     height: 4em;
+    align-items: center;
+    
+    
 }

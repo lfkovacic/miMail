@@ -1,1 +1,4 @@
-<div class="footer">Link</div>
+<div class="footer">
+    <p class=footer-text>Link</p>
+
+</div>

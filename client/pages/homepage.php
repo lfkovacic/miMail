@@ -14,5 +14,6 @@
         <div class="prikaz"></div>
         <?php include('../elements/footer.php'); ?> 
     </div>
+    
 </body>
         
