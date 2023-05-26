@@ -74,3 +74,62 @@ div {
     box-sizing: border-box;
     height: 80%;
 }
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.sidebar select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid black;
+    
+}
+
+.sidebarMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.sidebar .menu-button {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ccc;
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+}
+
+.sidebar .sub-menu {
+    display: none;
+    margin-left: 20px;
+}
+
+.sidebar .sub-menu .sub-menu-button {
+    display: block;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #eee;
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+}
+
+.sidebar .menu-button:hover + .sub-menu,
+.sidebar .sub-menu:hover {
+    display: block;
+}
+
+
