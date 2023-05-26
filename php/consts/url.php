@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 define('SERVER_HOST', 'localhost:8080');
 define('DATABASE_HOST', 'localhost:3306');

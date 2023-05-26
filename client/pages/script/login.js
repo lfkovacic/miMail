@@ -1,5 +1,6 @@
 import { RELATIVE_URL } from "../../consts/consts.js";
 import { loginService } from "../../api/loginService.js";
+import {getRandomChar, generateSHA256Hash} from "../../util/util.js";
 
 
 let registerMode = false;
@@ -8,7 +9,10 @@ const loginButton = document.getElementById("login-button");
 const fLogin = () => {
   const userObj = {};
   const username = document.getElementById('input-username').value;
-  const password = document.getElementById('input-password').value;
+  let password = document.getElementById('input-password').value;
+  password = 'jfjraihfslughejfvdfj%&#113GhjfGGW' + password + getRandomChar();
+  password = generateSHA256Hash(password);
+
   userObj.username = username;
   userObj.password = password;
   if (!(username === "" || password === "" )) {
