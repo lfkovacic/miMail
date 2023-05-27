@@ -1,9 +1,11 @@
 <?php
+$rootDirectory = $_SERVER['DOCUMENT_ROOT'];
+require_once($rootDirectory."/php/mailServer/Socket.php");
 
 class Mail
 {
+    protected $socket;
     protected $recipient, $subject, $body, $headers;
-
     public function __construct($dto)
     {
         $this->recipient = $dto->recipient;
@@ -14,69 +16,46 @@ class Mail
 
     public function send()
     {
-        //if (mail($this->recipient, $this->subject, $this->body, $this->headers)){
-        //    echo "Mail sent!";
-        //} else echo "Failed to send mail!";
-
-        // SMTP server details
-        $smtpServer = '127.0.0.1';
-        $port = 25;
+        // Create new Socket for SMTP communication
+        try {
+            $smtp_conn = new Socket('127.0.0.1', 25);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
 
         // Sender and recipient details
         $from = 'test@mimail.org';
-        $to = 'Papercut@papercut.com';
+        $to = $this->recipient;
 
         // Message details
-        $subject = 'Your Subject';
-        $message = 'Umoran sam prijatelju, umoran.\nI od žena, i od vina, umoran.';
-
-        // Connect to the SMTP server
-        $socket = fsockopen($smtpServer, $port, $errno, $errstr, 10);
-        if (!$socket) {
-            echo "Failed to connect to SMTP server: $errstr ($errno)";
-            exit;
-        }
-
-        // Read the welcome message from the server
-        $response = fgets($socket);
-        echo "Server: $response";
+        $subject = $this->subject;
+        $message = $this->body;
 
         // Send the EHLO command
-        fputs($socket, "EHLO example.com\r\n");
-        $response = fgets($socket);
-        echo "Server: $response";
+        echo "Server:". $smtp_conn->send("EHLO mimail.org");
 
         // Send the MAIL FROM command
-        fputs($socket, "MAIL FROM: <$from>\r\n");
-        $response = fgets($socket);
-        echo "Server: $response";
+        echo "Server:". $smtp_conn->send("MAIL FROM: <$from>\r\n");
 
         // Send the RCPT TO command
-        fputs($socket, "RCPT TO: <$to>\r\n");
-        $response = fgets($socket);
-        echo "Server: $response";
+        echo "Server:". $smtp_conn->send("RCPT TO: <$to>\r\n");
 
         // Send the DATA command
-        fputs($socket, "DATA\r\n");
-        $response = fgets($socket);
-        echo "Server: $response";
+        echo "Server:". $smtp_conn->send("DATA\r\n");
 
         // Send the email headers and body
-        fputs($socket, "Subject: $subject\r\n");
-        fputs($socket, "From: $from\r\n");
-        fputs($socket, "To: $to\r\n");
-        fputs($socket, "\r\n");
-        fputs($socket, "$message\r\n");
-        fputs($socket, ".\r\n");
-        $response = fgets($socket);
-        echo "Server: $response";
+        $smtp_conn->put("Subject: $subject\r\n");
+        $smtp_conn->put("From: $from\r\n");
+        $smtp_conn->put("To: $to\r\n");
+        $smtp_conn->put("\r\n");
+        $smtp_conn->put("$message\r\n");
+        // End data, get response
+        echo "Server:". $smtp_conn->send(".\r\n");
 
         // Send the QUIT command
-        fputs($socket, "QUIT\r\n");
-        $response = fgets($socket);
-        echo "Server: $response";
+        echo "Server:". $smtp_conn->send("QUIT\r\n");
 
         // Close the socket
-        fclose($socket);
+        $smtp_conn->close();
     }
 }
