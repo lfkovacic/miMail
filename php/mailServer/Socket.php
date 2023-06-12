@@ -3,10 +3,11 @@
 class Socket
 {
 
-    protected $ip, $port;
+    protected $ip, $port, $ttl;
     private $conn;
     public function __construct($ip, $port)
     {
+        $this->ttl = 10;
         // Set IP and port
 
         $this->ip = $ip;
@@ -14,7 +15,7 @@ class Socket
 
         // Try to establish connection
 
-        $this->conn = fsockopen($this->ip, $this->port, $errno, $errstr, 10);
+        $this->conn = fsockopen($this->ip, $this->port, $errno, $errstr, $this->ttl);
 
         if (!$this->conn) throw new Exception("Error trying to establish connection to $this->ip on port $this->port! Aborting!");
         $response = fgets($this->conn);
@@ -27,17 +28,22 @@ class Socket
         return fgets($this->conn);
     }
 
-    public function put($msg){
+    public function put($msg)
+    {
         // Send message, no reply
         fputs($this->conn, $msg);
     }
 
-    public function get(){
+    public function get()
+    {
+        stream_set_timeout($this->conn, $this->ttl);
         // Get reply
-        return fgets($this->conn);
+        $reply = fgets($this->conn);
+        return $reply;
     }
 
-    public function close(){
+    public function close()
+    {
         fclose($this->conn);
     }
 }

@@ -33,7 +33,9 @@ class Mail
             $host = $matches[1];
         } else throw new Exception("Error: invalid address!");
 
-        $mxRecords = $this->mxLookup($host);
+        if ($host != "localhost")
+            $mxRecords = $this->mxLookup($host);
+        else $mxRecords = array("localhost");
 
         // Create new Socket for SMTP communication
         try {
@@ -44,9 +46,14 @@ class Mail
 
         echo "Send the EHLO command:\n";
         echo "Server:" . $smtp_conn->send("EHLO mimail.org\r\n");
-        while ($smtp_conn->get()){
-            echo $smtp_conn->get();
-        }
+
+        // Wait for the server to shut up.
+
+        do {
+            $response = $smtp_conn->get();
+            echo "Server: " . $response;
+        } while ($response);
+
 
         echo "Send the MAIL FROM command:\n";
         echo "Server:" . $smtp_conn->send("MAIL FROM: <$from>\r\n");
@@ -57,7 +64,7 @@ class Mail
         echo "Send the DATA command:\n";
         echo "Server:" . $smtp_conn->send("DATA\r\n");
 
-        echo "Send the email headers and body:\n";
+        echo "Send the email headers and body...\n";
         $smtp_conn->put("Subject: $subject\r\n");
         $smtp_conn->put("From: $from\r\n");
         $smtp_conn->put("To: $to\r\n");
