@@ -145,3 +145,11 @@ form{
 .sidebar .sub-menu:hover {
     display: block;
 }
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    justify-content: center;
+    align-items: center;
+}
