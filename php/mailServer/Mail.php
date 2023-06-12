@@ -29,7 +29,7 @@ class Mail
         $host = "";
 
         // Get host from the recipient's address
-        if (preg_match("/[a-z]+@(.+)/", $to, $matches)) {
+        if (preg_match("/[\x00-\x7f`]+@(.+)/", $to, $matches)) {
             $host = $matches[1];
         } else throw new Exception("Error: invalid address!");
 
@@ -72,6 +72,13 @@ class Mail
         $smtp_conn->put("$message\r\n");
         echo "End data, get response:\n";
         echo "Server:" . $smtp_conn->send(".\r\n");
+
+        // Wait for the server to shut up.
+
+        do {
+            $response = $smtp_conn->get();
+            echo "Server: " . $response;
+        } while ($response);
 
         echo "Send the QUIT command:\n";
         echo "Server:" . $smtp_conn->send("QUIT\r\n");
