@@ -1,6 +1,6 @@
 <?php
 $rootDirectory = $_SERVER['DOCUMENT_ROOT'];
-require_once($rootDirectory."/php/mailServer/Socket.php");
+require_once($rootDirectory . "/php/mailServer/Socket.php");
 
 class Mail
 {
@@ -16,12 +16,7 @@ class Mail
 
     public function send()
     {
-        // Create new Socket for SMTP communication
-        try {
-            $smtp_conn = new Socket('127.0.0.1', 25);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        print_r($this);
 
         // Sender and recipient details
         $from = 'test@mimail.org';
@@ -31,31 +26,62 @@ class Mail
         $subject = $this->subject;
         $message = $this->body;
 
-        // Send the EHLO command
-        echo "Server:". $smtp_conn->send("EHLO mimail.org");
+        $host = "";
 
-        // Send the MAIL FROM command
-        echo "Server:". $smtp_conn->send("MAIL FROM: <$from>\r\n");
+        // Get host from the recipient's address
+        if (preg_match("/[a-z]+@(.+)/", $to, $matches)) {
+            $host = $matches[1];
+        } else throw new Exception("Error: invalid address!");
 
-        // Send the RCPT TO command
-        echo "Server:". $smtp_conn->send("RCPT TO: <$to>\r\n");
+        $mxRecords = $this->mxLookup($host);
 
-        // Send the DATA command
-        echo "Server:". $smtp_conn->send("DATA\r\n");
+        // Create new Socket for SMTP communication
+        try {
+            $smtp_conn = new Socket($mxRecords[0], 25);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
 
-        // Send the email headers and body
+        echo "Send the EHLO command:\n";
+        echo "Server:" . $smtp_conn->send("EHLO mimail.org\r\n");
+        while ($smtp_conn->get()){
+            echo $smtp_conn->get();
+        }
+
+        echo "Send the MAIL FROM command:\n";
+        echo "Server:" . $smtp_conn->send("MAIL FROM: <$from>\r\n");
+
+        echo "Send the RCPT TO command:\n";
+        echo "Server:" . $smtp_conn->send("RCPT TO: <$to>\r\n");
+
+        echo "Send the DATA command:\n";
+        echo "Server:" . $smtp_conn->send("DATA\r\n");
+
+        echo "Send the email headers and body:\n";
         $smtp_conn->put("Subject: $subject\r\n");
         $smtp_conn->put("From: $from\r\n");
         $smtp_conn->put("To: $to\r\n");
         $smtp_conn->put("\r\n");
         $smtp_conn->put("$message\r\n");
-        // End data, get response
-        echo "Server:". $smtp_conn->send(".\r\n");
+        echo "End data, get response:\n";
+        echo "Server:" . $smtp_conn->send(".\r\n");
 
-        // Send the QUIT command
-        echo "Server:". $smtp_conn->send("QUIT\r\n");
+        echo "Send the QUIT command:\n";
+        echo "Server:" . $smtp_conn->send("QUIT\r\n");
 
         // Close the socket
         $smtp_conn->close();
+    }
+
+    private function mxLookup($host)
+    {
+        $mxRecords = [];
+        if (getmxrr($host, $mxRecords)) {
+            echo "MX records for $host:\n";
+            foreach ($mxRecords as $record) {
+                echo "\t$record\n";
+            }
+        } else throw new Exception("No MX records found for $host!\n");
+        return $mxRecords;
     }
 }
