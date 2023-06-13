@@ -1,5 +1,6 @@
 import { RELATIVE_URL } from "../../consts/consts.js";
 import { mailService } from "../../api/mailService.js";
+import { Cookie } from "../../util/cookies.js";
 
 const sendMailButton = document.getElementById("send-mail-button");
 const fSendMail = () => {
@@ -8,13 +9,10 @@ const fSendMail = () => {
     const subject = document.getElementById('input-subject').value;
     const content = document.getElementById('input-content').value;
 
+    mailObj.sender = Cookie.get("username")+'@mimail.org';
     mailObj.recipient = recipient;
     mailObj.subject = subject;
-    mailObj.content = content;
-    //TODO: impelentirati username
-    mailObj.headers = "From: test@mimail.org";
-
-    console.log(mailObj);
+    mailObj.content = content;    
 
     if (!(recipient === "" || subject === "" || content === "")) {
         mailService.sendMail(mailObj)

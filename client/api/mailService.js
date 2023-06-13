@@ -4,7 +4,7 @@ const mailService = {
     sendMail: async (mailObj) => {
         try {
             const response = await ajaxService.sendRequest('POST', '/api/mail/sendMail', mailObj)
-            console.log(response);
+            return response;
         } catch (e) {
             console.error(e);
         }

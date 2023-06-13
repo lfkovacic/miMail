@@ -9,6 +9,7 @@ class SendMail extends Endpoint {
     protected function parseRequest(&$dto){
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
+        $dto->sender = $data['sender'];
         $dto->recipient = $data['recipient'];
         $dto->subject = $data['subject'];
         $dto->body = $data['body'];

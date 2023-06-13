@@ -5,9 +5,10 @@ require_once($rootDirectory . "/php/mailServer/Socket.php");
 class Mail
 {
     protected $socket;
-    protected $recipient, $subject, $body, $headers;
+    protected $sender, $recipient, $subject, $body, $headers;
     public function __construct($dto)
     {
+        $this->sender = $dto->sender;
         $this->recipient = $dto->recipient;
         $this->subject = $dto->subject;
         $this->body = $dto->body;
@@ -19,7 +20,7 @@ class Mail
         print_r($this);
 
         // Sender and recipient details
-        $from = 'test@mimail.org';
+        $from = $this->sender;
         $to = $this->recipient;
 
         // Message details

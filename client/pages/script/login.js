@@ -1,37 +1,36 @@
 import { RELATIVE_URL } from "../../consts/consts.js";
 import { loginService } from "../../api/loginService.js";
-import {getRandomChar, generateSHA256Hash} from "../../util/util.js";
+import { processPassword, getPasswordArray } from "../../util/util.js";
+import { Cookie } from "../../util/cookies.js";
 
 
 let registerMode = false;
 
 const loginButton = document.getElementById("login-button");
-const fLogin = () => {
+const fLogin = async () => {
   const userObj = {};
   const username = document.getElementById('input-username').value;
+  Cookie.set("username", username, 1);
   let password = document.getElementById('input-password').value;
-  password = 'jfjraihfslughejfvdfj%&#113GhjfGGW' + password + getRandomChar();
-  password = generateSHA256Hash(password);
 
-  userObj.username = username;
-  userObj.password = password;
-  if (!(username === "" || password === "" )) {
-    loginService.authenticateUser(userObj)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  if (!(username === "" || password === "")) {
+    userObj.username = username;
+    userObj.passwordArr = await getPasswordArray(password);
+    const response = await loginService.authenticateUser(userObj);
+    if (response) {      
+      Cookie.set("token", response, 1);
+      window.location.href = RELATIVE_URL + "/homepage.php";          
     }
-  console.log(password);
-  
- // window.location.href = RELATIVE_URL + "/homepage.php";
+    else throw new Error("Pogrešni korisnički podatci!");
+
+  }
+
+
+  // window.location.href = RELATIVE_URL + "/homepage.php";
 }
 loginButton.addEventListener("click", fLogin);
 
 const registerButton = document.getElementById("register-button");
-console.log("registerButton:", registerButton);
 const fRegister = () => {
   if (!registerMode) {
     let form = document.getElementById('login-form');
@@ -69,14 +68,11 @@ const fSubmitRegister = async () => {
   const userObj = {};
   const username = document.getElementById('input-username').value;
   const password = document.getElementById('input-password').value;
-  userObj.username = username;
-  userObj.password = password;
   const password2 = document.getElementById('input-repeat-password').value;
-  console.log(password);
-  console.log(password2);
 
-
-  if (!(username === "" || password === "" || password2 === "")&&(password === password2)) {
+  if (!(username === "" || password === "" || password2 === "") && (password === password2)) {
+    userObj.username = username;
+    userObj.password = await processPassword(password);
     loginService.submitUserRegister(userObj)
       .then((response) => {
         console.log(response);

@@ -1,0 +1,19 @@
+{
+    "name": "lfkov/mi-mail",
+    "description": "mimail",
+    "type": "project",
+    "require": {
+        "firebase/php-jwt": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lfkov\\MiMail\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "L. Filip Kovačić",
+            "email": "lfkovacic@gmail.com"
+        }
+    ]
+}

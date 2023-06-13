@@ -1,6 +1,6 @@
 const ajaxService = {};
 
-ajaxService.sendRequest = function (method, url, data, headers = {}, responseType = 'json') {
+ajaxService.sendRequest = function (method, url, data, headers = {}, responseType = 'application/json') {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
 

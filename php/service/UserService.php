@@ -1,7 +1,7 @@
 <?php
 $rootDirectory = $_SERVER['DOCUMENT_ROOT'];
 include_once($rootDirectory . "/php/repository/UserRepository.php");
-
+include_once($rootDirectory . '/php/jwt/Jwt.php');
 class UserService
 {
     private $userRepository;
@@ -11,11 +11,22 @@ class UserService
         $this->userRepository = new UserRepository();
     }
 
-    public function authenticateUser($username, $password)
+    public function authenticateUser($username, $passworArr)
     {
         $user = $this->userRepository->getUser($username);
-        if ($user[0]["USERNAME"] == $username && $user[0]["PWD_HASH"] == $password) {
-            return true;
+        if ($user[0]["USERNAME"] == $username){
+            $authenticated = false;
+            foreach($passworArr as $hash){
+                if ($user[0]["PWD_HASH"] == $hash){
+                    $authenticated = true;
+                    break;
+                }
+            }
+        }
+        if ($authenticated){
+            $token = new MyJwt($username);
+            $tokenString = $token->getToken();
+            return $tokenString;
         } else return false;
     }
 
