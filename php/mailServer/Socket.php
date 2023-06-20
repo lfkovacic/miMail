@@ -7,7 +7,10 @@ class Socket
     private $conn;
     public function __construct($ip, $port)
     {
+        // Give up after 10 seconds...
+
         $this->ttl = 10;
+
         // Set IP and port
 
         $this->ip = $ip;
@@ -17,7 +20,8 @@ class Socket
 
         $this->conn = fsockopen($this->ip, $this->port, $errno, $errstr, $this->ttl);
 
-        if (!$this->conn) throw new Exception("Error trying to establish connection to $this->ip on port $this->port! Aborting!");
+        if (!$this->conn)
+            throw new Exception("Error trying to establish connection to $this->ip on port $this->port! Aborting!");
         $response = fgets($this->conn);
         echo "Server: $response";
     }

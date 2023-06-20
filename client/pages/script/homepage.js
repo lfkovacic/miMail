@@ -12,7 +12,7 @@ const fSendMail = () => {
     mailObj.sender = Cookie.get("username")+'@mimail.org';
     mailObj.recipient = recipient;
     mailObj.subject = subject;
-    mailObj.content = content;    
+    mailObj.body = content;    
 
     if (!(recipient === "" || subject === "" || content === "")) {
         mailService.sendMail(mailObj)

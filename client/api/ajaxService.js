@@ -1,6 +1,7 @@
 const ajaxService = {};
 
-ajaxService.sendRequest = function (method, url, data, headers = {}, responseType = 'application/json') {
+ajaxService.sendRequest = function (method, url, data, headers = {},
+  responseType = 'application/json') {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
 
@@ -24,7 +25,7 @@ ajaxService.sendRequest = function (method, url, data, headers = {}, responseTyp
       reject("Network Error");
     };
 
-    if (method === 'GET') {
+    if (method === 'GET') { //Provjera i parsiranje data objekta
       if (data instanceof Object) {
         const queryParams = new URLSearchParams();
         for (const key in data) {
@@ -43,4 +44,3 @@ ajaxService.sendRequest = function (method, url, data, headers = {}, responseTyp
 };
 
 export default ajaxService;
- 

@@ -1,9 +1,6 @@
 import ajaxService from "./ajaxService.js";
 
 const loginService = {
-  getToken: () => {
-    //TODO: AJAX
-  },
   submitUserRegister: async (userObj) => {
     try {
       const response = await ajaxService.sendRequest('POST', `/api/login/registerUser`, userObj);
