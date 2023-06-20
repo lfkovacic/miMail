@@ -24,9 +24,6 @@ const fLogin = async () => {
     else throw new Error("Pogrešni korisnički podatci!");
 
   }
-
-
-  // window.location.href = RELATIVE_URL + "/homepage.php";
 }
 loginButton.addEventListener("click", fLogin);
 

@@ -9,6 +9,5 @@ const mailService = {
             console.error(e);
         }
     }
-
 }
 export {mailService};
