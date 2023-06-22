@@ -9,7 +9,7 @@ class Socket
     {
         // Give up after 10 seconds...
 
-        $this->ttl = 10;
+        $this->ttl = 5;
 
         // Set IP and port
 
@@ -36,6 +36,7 @@ class Socket
     {
         // Send message, no reply
         fputs($this->conn, $msg);
+        sleep(1);
     }
 
     public function get()

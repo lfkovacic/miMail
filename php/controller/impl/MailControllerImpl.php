@@ -6,7 +6,8 @@ include_once($rootDirectory."/php/Controller.php");
 $controller_uri = '/api/mail';
 $MailController = new Controller (
     array(
-        new SendMail('POST', $controller_uri.'/sendMail')
+        new SendMail('POST', $controller_uri.'/sendMail'),
+        new ReceiveMail('POST', $controller_uri.'/receiveMail')
     ), $controller_uri
 );
 

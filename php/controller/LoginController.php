@@ -40,7 +40,6 @@ class RegisterUser extends Endpoint
     {
         $userService = new UserService();
         header('Content-Type: application/json');
-        $data = array('username' => $dto->username, 'password' => $dto->password);
         $sql_response = $userService->registerUser($dto->username, $dto->password);
         echo $sql_response;
     }
