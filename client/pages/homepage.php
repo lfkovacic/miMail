@@ -13,6 +13,7 @@
     <div class="main-wrapper">
 
         <div class="sidebar">
+            <h3>ODABIR:</h3>
             <select>
                 <option value="option1">A</option>
                 <option value="option2">B</option>
