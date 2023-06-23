@@ -24,4 +24,18 @@ class MailService
         } else
             return "Korisnik nije pronađen!";
     }
+
+    public function getAllMail($user_id){
+        $response = $this->mailRepository->getMailByUserId($user_id);
+        if ($response == array()){
+            return "Nema mailova za prikaz";
+        } else return $response;
+    }
+
+    public function getMail($mail_id){
+        $response = $this->mailRepository->getMailByMailId($mail_id);
+        if ($response == array()){
+            return "Nema mailova za prikaz";
+        } else return $response;
+    }
 }

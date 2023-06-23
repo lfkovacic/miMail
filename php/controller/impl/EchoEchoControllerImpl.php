@@ -5,7 +5,7 @@ include_once($rootDirectory."/php/Controller.php");
 $controller_uri = '/api/echoecho';
 $EchoEchoController = new Controller(
     array(
-        new EchoEcho('GET', $controller_uri.'/echoecho')
+        new EchoEcho('GET', $controller_uri.'/echoecho', false)
     ), $controller_uri
 );
 $EchoEchoController->run();
