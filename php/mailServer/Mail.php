@@ -17,7 +17,6 @@ class Mail
 
     public function send()
     {
-        print_r($this);
 
         // Sender and recipient details
         $from = $this->sender;

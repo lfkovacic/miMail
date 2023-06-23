@@ -24,8 +24,7 @@ class UserService
             }
         }
         if ($authenticated){
-            $token = new MyJwt($username);
-            $tokenString = $token->getToken();
+            $tokenString = MyJwt::getToken($username);
             return $tokenString;
         } else return false;
     }

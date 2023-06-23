@@ -79,7 +79,10 @@ def handle_smtp_request(client_socket, client_address):
         mail_to = re.match(TO_REGEX, get(client_socket)).group(1)
         get(client_socket)
         mail_content = get(client_socket)
-        get(client_socket)
+        request = get(client_socket)
+        while (request != '.'):
+            mail_content += request
+            request = get(client_socket)
     request = get(client_socket)
     put(client_socket, 'See ya!\n')
     client_socket.close()
@@ -96,12 +99,12 @@ def handle_smtp_request(client_socket, client_address):
     headers = {'Content-Type': 'application/json'}
     response = requests.post(HTTP_ENDPOINT, data=json_payload, headers=headers)
     
-    if response.status_code == 200:
+    if response.status_code == 200:        
         print("API call successful")
-        print("Response:")
-        print(response)
-    else:
+        print(response.content)
+    else:        
         print("API call failed")
+        print(response.content)
 
     print(json_payload)
 
