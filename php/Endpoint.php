@@ -7,7 +7,7 @@ abstract class Endpoint
     protected $method;
     protected $uri;
     protected $dto;
-    protected $isAuth=false;
+    protected $isAuth = false;
 
     public function __construct($method, $uri, $isAuth)
     {
@@ -22,7 +22,11 @@ abstract class Endpoint
     {
         $request_method = $_SERVER['REQUEST_METHOD'];
         $request_uri = $_SERVER['REQUEST_URI'];
-        if ($this->uri!=$request_uri||$this->method!=$request_method) return false;
+        $request_regex = "/([^?]*)\?(.*)/";
+        preg_match($request_regex, $request_uri, $matches);
+        if (!empty($matches)) $uri_match = $matches[1];
+        else $uri_match = ""; //Mrzim php...
+        if (!($this->uri == $request_uri || $this->uri == $uri_match) || $this->method != $request_method) return false;
         else {
             $auth_header = $this->isAuth ? getallheaders()['Authorization'] : '';
             $token = '';
