@@ -19,7 +19,7 @@ class MyJwt
     {
         try {
             $decodedJwt = self::decode($jwt, SECRET_KEY);
-            if ($decodedJwt["exp"]<time()) {
+            if (time()<$decodedJwt['exp']) {
                 // Token is valid
                 return true;
             } else {
