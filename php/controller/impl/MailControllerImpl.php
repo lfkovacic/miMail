@@ -7,7 +7,8 @@ $controller_uri = '/api/mail';
 $MailController = new Controller(
     array(
         new SendMail('POST', $controller_uri . '/sendMail', true),
-        new ReceiveMail('POST', $controller_uri . '/receiveMail', false)
+        new ReceiveMail('POST', $controller_uri . '/receiveMail', false),
+        new GetAllMail('GET', $controller_uri.'/getAllMail', true)
     ),
     $controller_uri
 );
