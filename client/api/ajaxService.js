@@ -1,3 +1,4 @@
+import { Cookie } from "../util/cookies.js";
 const ajaxService = {};
 
 ajaxService.sendRequest = function (method, url, data, headers = {},
@@ -12,6 +13,8 @@ ajaxService.sendRequest = function (method, url, data, headers = {},
     }
 
     xhr.responseType = responseType;
+    const token = Cookie.get('token').trim();
+    xhr.setRequestHeader('Authorization', 'Bearer '+token);
 
     xhr.onload = function () {
       if (xhr.status === 200) {

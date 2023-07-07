@@ -56,13 +56,16 @@ class Mail
 
 
         echo "Send the MAIL FROM command:\n";
-        echo "Server:" . $smtp_conn->send("MAIL FROM: <$from>\r\n");
+        echo "Server:" . $smtp_conn->send("MAIL FROM:<$from>\r\n");
+        echo "MAIL FROM: \"$from\"\r\n";
 
         echo "Send the RCPT TO command:\n";
-        echo "Server:" . $smtp_conn->send("RCPT TO: <$to>\r\n");
+        echo "Server:" . $smtp_conn->send("RCPT TO:<$to>\r\n");
+        echo "RCPT TO: \"$to\"\r\n";
 
         echo "Send the DATA command:\n";
         echo "Server:" . $smtp_conn->send("DATA\r\n");
+        echo "DATA\r\n";
 
         echo "Send the email headers and body...\n";
         $smtp_conn->put("Subject: $subject\r\n");

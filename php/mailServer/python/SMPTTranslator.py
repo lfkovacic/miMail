@@ -83,6 +83,10 @@ def handle_smtp_request(client_socket, client_address):
         while (request != '.'):
             mail_content += request
             request = get(client_socket)
+        put(client_socket, '250 Yeah, sure')
+    else:
+        put(client_socket, "Go away...\n")
+        client_socket.close()
     request = get(client_socket)
     put(client_socket, 'See ya!\n')
     client_socket.close()
