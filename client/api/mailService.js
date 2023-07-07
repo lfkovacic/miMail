@@ -1,4 +1,5 @@
 import ajaxService from "./ajaxService.js";
+import { Cookie } from "../util/cookies.js";
 
 const mailService = {
     sendMail: async (mailObj) => {
@@ -11,8 +12,9 @@ const mailService = {
     },
     getAllMail: async () => {
         try {
-            const response = [{ id: 'test1', content: 'content 1' }, { id: 'test2', content: 'content 2' }];
-            return response;
+            const username = Cookie.get('username');
+            const response = await ajaxService.sendRequest('GET', `/api/mail/getAllMail?${username}`);
+            console.log (response);
         }
         catch (e) {
             console.error(e);

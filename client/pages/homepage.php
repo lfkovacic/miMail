@@ -41,6 +41,7 @@
                     </div>
                     <div class = "hidden" id = "mail-container">
                     </div>
+                    
                 </form>
             </div>
             <?php include('../elements/footer.php'); ?>
