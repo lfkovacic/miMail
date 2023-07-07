@@ -23,24 +23,23 @@
             <div class="prikaz">
                 <form>
                     <div class="input-container" id = "input-container"> 
-                        <div class="input-container">
+                        <div class="input-container input-recipient">
                             <label for="input-recipient">Primatelj</label>
                             <input id="input-recipient" name="recipient" type="text" value="">
                         </div>
-                        <div class="input-container">
+                        <div class="input-container input-subject">
                             <label for="input-subject">Subjekt</label>
                             <input id="input-subject" name="subject" type="text" value="">
                         </div>
-                        <div class="input-container">
+                        <div class="input-container input-content">
                             <label for="input-content">Sadržaj</label>
                             <textarea id="input-content" name="content" rows="20" cols="50"></textarea>
                         </div>
-                        <div class="input-container">
+                        <div class="input-container input-button">
                             <button id="send-mail-button" type="button">Pošalji</button>
                         </div>
                     </div>
                     <div class = "hidden" id = "mail-container">
-
                     </div>
                 </form>
             </div>
