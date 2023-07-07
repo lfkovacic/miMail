@@ -42,6 +42,7 @@ const fGetAllMail = () => {
             }
         })
         isMailFetched = true;
+
     }
 }
 const fGetMail = (id) => {
@@ -55,26 +56,39 @@ const fGetMail = (id) => {
         const fromDiv = document.createElement('div');
         const subjectDiv = document.createElement('div');
         const contentDiv = document.createElement('div');
+        const spanFromDiv = document.createElement('span');
+        const spanSubjectDiv = document.createElement('span');
+        const spanContentDiv = document.createElement('span');
         fromDiv.id = 'from-div';
         subjectDiv.id = 'subject-div';
         contentDiv.id = 'content-div';
+        spanFromDiv.innerHTML = 'Od: ';
+        spanSubjectDiv.innerHTML = 'Predmet:';
+        spanContentDiv.innerHTML = 'Sadržaj:'
         fromDiv.innerHTML = response.sender;
         subjectDiv.innerHTML = response.subject;
         contentDiv.innerHTML = response.content;
-        mailContainer.appendChild(fromDiv);
-        mailContainer.appendChild(subjectDiv);
-        mailContainer.appendChild(contentDiv);
+        mailContainer.appendChild(spanFromDiv);
+        spanFromDiv.appendChild(fromDiv);
+        mailContainer.appendChild(spanSubjectDiv);
+        spanSubjectDiv.appendChild(subjectDiv);
+        mailContainer.appendChild(spanContentDiv);
+        spanContentDiv.appendChild(contentDiv);
+
     })
+
 }
 const inbox = document.getElementById('option_inbox');
 inbox.addEventListener('click', fGetAllMail);
 
 const fShowComposeMail = () => {
-    const inputContainer = document.getElementById ('input-container');
+    const inputContainer = document.getElementById('input-container');
     inputContainer.className = "input-container";
-    const mailContainer = document.getElementById ('mail-container');
+    const mailContainer = document.getElementById('mail-container');
     mailContainer.className = 'hidden';
+
 }
+
 
 const composeMail = document.getElementById('compose-mail');
 composeMail.addEventListener('click', fShowComposeMail);
