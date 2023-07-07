@@ -25,8 +25,9 @@ class MailService
             return "Korisnik nije pronađen!";
     }
 
-    public function getAllMail($user_id){
-        $response = $this->mailRepository->getMailByUserId($user_id);
+    public function getAllMail($username){
+        $user = $this->userRepository->getUser($username);
+        $response = $this->mailRepository->getMailByUserId($user[0]['UID']);
         if ($response == array()){
             return "Nema mailova za prikaz";
         } else return $response;
