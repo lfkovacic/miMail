@@ -24,7 +24,9 @@ abstract class Endpoint
         $request_uri = $_SERVER['REQUEST_URI'];
         $request_regex = "/([^?]*)\?(.*)/";
         preg_match($request_regex, $request_uri, $matches);
-        if (!($this->uri == $request_uri || $this->uri == $matches[1]) || $this->method != $request_method) return false;
+        if (!empty($matches)) $uri_match = $matches[1];
+        else $uri_match = ""; //Mrzim php...
+        if (!($this->uri == $request_uri || $this->uri == $uri_match) || $this->method != $request_method) return false;
         else {
             $auth_header = $this->isAuth ? getallheaders()['Authorization'] : '';
             $token = '';
