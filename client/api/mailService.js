@@ -13,7 +13,7 @@ const mailService = {
     getAllMail: async () => {
         try {
             const username = Cookie.get('username');
-            const response = await ajaxService.sendRequest('GET', `/api/mail/getAllMail?${username}`);
+            const response = await ajaxService.sendRequest('GET', `/api/mail/getAllMail?username=${username}`);
             console.log (response);
         }
         catch (e) {
