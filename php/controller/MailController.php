@@ -48,14 +48,24 @@ class ReceiveMail extends Endpoint
         echo $sql_response;
     }
 }
-class GetAllMail extends Endpoint{
-    protected function parseRequest(&$dto){
+class GetAllMail extends Endpoint
+{
+    protected function parseRequest(&$dto)
+    {
         $dto->username = $_GET['username'];
     }
-    protected function execute($dto){
+    protected function execute($dto)
+    {
         $mailService = new MailService();
         $sql_response = $mailService->getAllMail($dto->username);
-        echo $sql_response;
+        $response_raw = array();
+        foreach ($sql_response as $mail) {
+            $from = $mail['M_FROM'];
+            $subject = $mail['M_SUBJECT'];
+            $content = $mail['M_CONTENT'];
+            $mail_arr = array("from" => $from, "subject" => $subject, "content" => $content);
+            array_push($response_raw, $mail_arr);
+        }
+        echo json_encode($response_raw);
     }
-
 }
