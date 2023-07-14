@@ -26,7 +26,7 @@ class UserService
         if ($authenticated){
             $tokenString = MyJwt::getToken($username);
             return $tokenString;
-        } else return false;
+        } else return 0;
     }
 
     public function registerUser($username, $pwd_hash)

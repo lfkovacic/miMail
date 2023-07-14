@@ -23,11 +23,10 @@ class MyJwt
                 // Token is valid
                 return true;
             } else {
-                // Token is invalid
-                return false;
+                throw new Exception("Sesija je istekla!");
             }
         } catch (Exception $e) {
-            return false;
+            throw new Exception("Token nije validan!");
         }
     }
 
