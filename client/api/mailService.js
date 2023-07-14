@@ -15,6 +15,7 @@ const mailService = {
             const username = Cookie.get('username');
             const response = await ajaxService.sendRequest('GET', `/api/mail/getAllMail?username=${username}`);
             console.log (response);
+            return response;
         }
         catch (e) {
             console.error(e);
@@ -22,9 +23,7 @@ const mailService = {
     },
     getMail: async (id) => {
         try {
-            const response = {
-                sender: 'test@localhost', subject: 'test', content: 'test'
-            };
+            const response = ajaxService.sendRequest('GET', `/api/mail/getAllMail?id=${id}`);
             return response;
 
         } catch (error) {
