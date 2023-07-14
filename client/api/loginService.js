@@ -12,7 +12,8 @@ const loginService = {
   authenticateUser: async (userObj) => {
     try {
       const response = await ajaxService.sendRequest('POST', '/api/login/authenticateUser', userObj);
-      return response;
+      console.log(response)
+      return JSON.parse(response);
     }
     catch (error) {
       throw new Error(`Greška u autentifikaciji: ${error.message}`);

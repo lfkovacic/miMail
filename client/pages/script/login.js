@@ -17,11 +17,14 @@ const fLogin = async () => {
     userObj.username = username;
     userObj.passwordArr = await getPasswordArray(password);
     const response = await loginService.authenticateUser(userObj);
-    if (response) {      
-      Cookie.set("token", response, 1);
+    window.alert(JSON.stringify(response));
+    if (response && response.stsCode === "LOGIN_SUCCESS") {
+      window.alert(response.token);      
+      Cookie.set("token", response.token, 1);
+      console.log(response);
       window.location.href = RELATIVE_URL + "/homepage.php";          
     }
-    else throw new Error("Pogrešni korisnički podatci!");
+    else throw new Error(response.msg);
 
   }
 }
