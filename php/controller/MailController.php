@@ -60,10 +60,11 @@ class GetAllMail extends Endpoint
         $sql_response = $mailService->getAllMail($dto->username);
         $response_raw = array();
         foreach ($sql_response as $mail) {
+            $mail_id = $mail['MAIL_ID'];
             $from = $mail['M_FROM'];
             $subject = $mail['M_SUBJECT'];
             $content = $mail['M_CONTENT'];
-            $mail_arr = array("from" => $from, "subject" => $subject, "content" => $content);
+            $mail_arr = array("id"=>$mail_id, "from" => $from, "subject" => $subject, "content" => $content);
             array_push($response_raw, $mail_arr);
         }
         echo json_encode($response_raw);
