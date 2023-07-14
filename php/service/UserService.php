@@ -13,6 +13,8 @@ class UserService
 
     public function authenticateUser($username, $passworArr)
     {
+
+        //Implementirati kao JSON?
         $user = $this->userRepository->getUser($username);
         if ($user[0]["USERNAME"] == $username){
             $authenticated = false;
@@ -25,8 +27,8 @@ class UserService
         }
         if ($authenticated){
             $tokenString = MyJwt::getToken($username);
-            return $tokenString;
-        } else return 0;
+            return array('status'=>'success', 'msg'=>'Uspješna prijava', 'stsCode'=>'LOGIN_SUCCESS', 'token'=>$tokenString);
+        } else return array('status'=>'error', 'msg'=>'Greška kod prijave', 'stsCode'=>'LOGIN_ERROR', 'token'=>null); //False
     }
 
     public function registerUser($username, $pwd_hash)

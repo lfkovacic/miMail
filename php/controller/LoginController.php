@@ -66,6 +66,6 @@ class AuthenticateUser extends Endpoint
         $userService = new UserService();
         header('Content-Type: application/json');
         $res = $userService->authenticateUser($dto->username, $dto->passwordArr);
-        echo $res;
+        echo json_encode($res);
     }
 }
