@@ -11,7 +11,7 @@ class MailRepository extends Repository
 
     public function getMailByUserId($user_id)
     {
-        $sql = "SELECT m.* FROM MAIL m WHERE m.USER_ID = " . $user_id;
+        $sql = "SELECT m.* FROM MAIL m WHERE m.USER_ID = " . $user_id. " ORDER BY 1";
         $conn = parent::connect();
         $result = $conn->query($sql);
 

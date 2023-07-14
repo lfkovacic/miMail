@@ -63,10 +63,24 @@ class GetAllMail extends Endpoint
             $mail_id = $mail['MAIL_ID'];
             $from = $mail['M_FROM'];
             $subject = $mail['M_SUBJECT'];
-            $content = $mail['M_CONTENT'];
-            $mail_arr = array("id"=>$mail_id, "from" => $from, "subject" => $subject, "content" => $content);
+            $mail_arr = array("id" => $mail_id, "from" => $from, "subject" => $subject);
             array_push($response_raw, $mail_arr);
         }
+        echo json_encode($response_raw);
+    }
+}
+
+class GetMailByMailId extends Endpoint{
+    protected function parseRequest(&$dto){
+        $dto->username = $_GET['id'];
+    }
+    protected function execute($dto){
+        $mailService = new MailService();
+        $sql_response = $mailService->getMail($dto->id);
+        $from = $sql_response[0]['M_FROM'];
+        $subject = $sql_response[0]['M_SUBJECT'];
+        $content = $sql_response[0]['M_CONTENT'];
+        $response_raw = array("from"=> $from, "subject" => $subject, "content" => $content);
         echo json_encode($response_raw);
     }
 }
