@@ -5,7 +5,7 @@ const mailService = {
     sendMail: async (mailObj) => {
         try {
             const response = await ajaxService.sendRequest('POST', '/api/mail/sendMail', mailObj)
-            return response;
+            return JSON.parse(response);
         } catch (e) {
             console.error(e);
         }
@@ -14,8 +14,7 @@ const mailService = {
         try {
             const username = Cookie.get('username');
             const response = await ajaxService.sendRequest('GET', `/api/mail/getAllMail?username=${username}`);
-            console.log (response);
-            return response;
+            return JSON.parse(response);
         }
         catch (e) {
             console.error(e);
@@ -23,11 +22,10 @@ const mailService = {
     },
     getMail: async (id) => {
         try {
-            const response = ajaxService.sendRequest('GET', `/api/mail/getAllMail?id=${id}`);
-            return response;
-
-        } catch (error) {
-
+            const response = await ajaxService.sendRequest('GET', `/api/mail/getMail?id=${id}`);
+            return JSON.parse(response);
+        } catch (e) {
+            console.error(e);
         }
     }
 }

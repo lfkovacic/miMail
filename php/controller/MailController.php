@@ -72,7 +72,7 @@ class GetAllMail extends Endpoint
 
 class GetMailByMailId extends Endpoint{
     protected function parseRequest(&$dto){
-        $dto->username = $_GET['id'];
+        $dto->id = $_GET['id'];
     }
     protected function execute($dto){
         $mailService = new MailService();

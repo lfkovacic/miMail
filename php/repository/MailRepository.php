@@ -28,8 +28,7 @@ class MailRepository extends Repository
 
     public function getMailByMailId($mail_id)
     {
-        $sql = "SELECT m.* FROM mail m WHERE" .
-            "m.MAIL_ID = " . $mail_id;
+        $sql = "SELECT m.* FROM mail m WHERE m.MAIL_ID =  $mail_id ";
         $conn = parent::connect();
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {

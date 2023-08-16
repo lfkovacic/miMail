@@ -12,6 +12,7 @@ const loginService = {
   authenticateUser: async (userObj) => {
     try {
       const response = await ajaxService.sendRequest('POST', '/api/login/authenticateUser', userObj);
+      console.log(response);
       return response;
     }
     catch (error) {

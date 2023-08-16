@@ -19,7 +19,7 @@ const fSendMail = () => {
             .then((response) => {
                 console.log(response);
             }).catch((error) => {
-                console.log(error);
+                console.error(error);
             });
     }
 }
@@ -29,15 +29,13 @@ const fGetAllMail = () => {
 
     if (!isMailFetched) {
         const inbox = document.getElementById('option_inbox');
-        console.log(inbox);
         const arr = [];
         mailService.getAllMail().then((response) => {
-            console.log(response);
             for (const mail of response) {
                 const mailDiv = document.createElement('div');
                 mailDiv.id = mail.id;
-                mailDiv.innerHTML = mail.content;
-                mailDiv.addEventListener('click', (mail) => fGetMail(mail.id))
+                mailDiv.innerHTML = mail.subject;
+                mailDiv.addEventListener('click', (e) => fGetMail(e))
                 inbox.appendChild(mailDiv);
             }
         })
@@ -45,9 +43,9 @@ const fGetAllMail = () => {
 
     }
 }
-const fGetMail = (id) => {
-    mailService.getMail(id).then((response) => {
-        console.log(response);
+const fGetMail = (e) => {
+    const id = e.target.id;
+    mailService.getMail(parseInt(id)).then((response) => {
         const inputContainer = document.getElementById('input-container');
         inputContainer.className = 'hidden';
         const mailContainer = document.getElementById('mail-container');
@@ -65,7 +63,7 @@ const fGetMail = (id) => {
         spanFromDiv.innerHTML = 'Od: ';
         spanSubjectDiv.innerHTML = 'Predmet:';
         spanContentDiv.innerHTML = 'Sadržaj:'
-        fromDiv.innerHTML = response.sender;
+        fromDiv.innerHTML = response.from;
         subjectDiv.innerHTML = response.subject;
         contentDiv.innerHTML = response.content;
         mailContainer.appendChild(spanFromDiv);
