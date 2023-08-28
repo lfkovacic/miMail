@@ -1,6 +1,7 @@
 import { RELATIVE_URL } from "../../consts/consts.js";
-import { mailService } from "../../api/mailService.js";
+import { mailService } from "../../api/mailService.js";;
 import { Cookie } from "../../util/cookies.js";
+import { bodoviService } from "../../api/bodoviService.js";
 
 const sendMailButton = document.getElementById("send-mail-button");
 const fSendMail = () => {
@@ -84,9 +85,11 @@ const fShowComposeMail = () => {
     inputContainer.className = "input-container";
     const mailContainer = document.getElementById('mail-container');
     mailContainer.className = 'hidden';
-
 }
-
 
 const composeMail = document.getElementById('compose-mail');
 composeMail.addEventListener('click', fShowComposeMail);
+
+bodoviService.getClientIp().then(res=>{
+    console.log(res);
+})
