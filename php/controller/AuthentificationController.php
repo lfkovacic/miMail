@@ -16,3 +16,12 @@ class ValidateToken extends Endpoint {
         echo $response;
     }
 }
+
+class ClientIp extends Endpoint {
+    protected function parseRequest(&$dto){
+
+    }
+    protected function execute($dto){
+        echo $_SERVER['REMOTE_ADDR'];
+    }
+}

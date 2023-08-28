@@ -73,6 +73,4 @@
     </div>
 
     <script type="module" src="./script/homepage.js" defer></script>
-    <script>
-        const optionSelect = document.getElementById("option-select");
-        const inboxSubmenu = document.getElementById("inbox-submenu");
+</body>
