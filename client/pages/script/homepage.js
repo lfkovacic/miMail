@@ -92,4 +92,9 @@ composeMail.addEventListener('click', fShowComposeMail);
 
 bodoviService.getClientIp().then(res=>{
     console.log(res);
+    Cookie.set("ip", res.ip);
+})
+
+bodoviService.getClientCountry(Cookie.get("ip")).then(res=>{
+    console.log(res);
 })

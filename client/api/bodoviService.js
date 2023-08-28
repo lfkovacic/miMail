@@ -9,8 +9,15 @@ const bodoviService = {
         } catch (e) {
             console.error(e);
         }
+    },
+    getClientCountry: async (ip) => {
+        try {
+            const res = remoteService.sendRequest(`https://api.country.is/${ip}`);
+            return res;
+        } catch (e) {
+            console.error(e);
+        }
     }
 }
-
 
 export { bodoviService }
