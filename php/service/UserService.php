@@ -13,8 +13,6 @@ class UserService
 
     public function authenticateUser($username, $passworArr)
     {
-
-        //Implementirati kao JSON?
         $user = $this->userRepository->getUser($username);
         if ($user[0]["USERNAME"] == $username){
             $authenticated = false;

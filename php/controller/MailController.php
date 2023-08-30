@@ -17,6 +17,7 @@ class SendMail extends Endpoint
         $dto->subject = $data['subject'];
         $dto->body = $data['body'];
         $dto->headers = $data['headers'];
+        //todo blob
     }
 
     protected function execute($dto)
@@ -36,7 +37,7 @@ class ReceiveMail extends Endpoint
         $dto->recipient = $data['recipient'];
         $dto->subject = $data['subject'];
         $dto->body = $data['body'];
-        $dto->headers = $data['headers'];
+        //$dto->headers = $data['headers'];
     }
     protected function execute($dto)
     {
