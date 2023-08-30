@@ -1,5 +1,6 @@
 import time
 import os
+import threading
 
 def read_and_print_log(log_path):
     last_position = 0
@@ -23,5 +24,14 @@ def read_and_print_log(log_path):
             time.sleep(5)  # Adjust the delay as needed
 
 if __name__ == "__main__":
-    apache_error_log_path = "E:/xampp/apache/logs/error.log"  # Replace with the actual path
-    read_and_print_log(apache_error_log_path)
+    apache_error_log_path = "E:/xampp/apache/logs/error.log" 
+    apache_access_log_path = "E:/xampp/apache/logs/access.log"  
+    
+    error_log_thread = threading.Thread(target=read_and_print_log, args=(apache_error_log_path,))
+    access_log_thread = threading.Thread(target=read_and_print_log, args=(apache_access_log_path,))
+    
+    error_log_thread.start()
+    access_log_thread.start()
+    
+    error_log_thread.join()
+    access_log_thread.join()
