@@ -98,3 +98,4 @@ bodoviService.getClientIp().then(res=>{
 bodoviService.getClientCountry(Cookie.get("ip")).then(res=>{
     console.log(res);
 })
+

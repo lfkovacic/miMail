@@ -3,6 +3,7 @@ import { loginService } from "../../api/loginService.js";
 import { processPassword, getPasswordArray } from "../../util/util.js";
 import { Cookie } from "../../util/cookies.js";
 
+Cookie.delete("token");
 
 let registerMode = false;
 

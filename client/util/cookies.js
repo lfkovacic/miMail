@@ -22,6 +22,10 @@ class Cookie {
         }
         return "";
     }
+
+    static delete(cname){
+        Cookie.set(cname, null, 0);
+    }
 }
 
 export {Cookie}
