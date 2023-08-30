@@ -6,8 +6,8 @@ $controller_uri = '/api/UserDetails';
 
 $UserDetailsController = new Controller(
     array(
-        new GetUserDetailsByUserId ('POST', $controller_uri.'/getUserDetails', true)
-
+        new GetUserDetailsByUserId ('POST', $controller_uri.'/getUserDetails', true),
+        new InsertUserDetails ('POST', $controller_uri.'/insertUserDetails', true)
     ),
     $controller_uri
 );
