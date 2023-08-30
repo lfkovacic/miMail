@@ -48,26 +48,11 @@
         </div>
 
         <div class="sidebarMenu">
-            <a href="#" class="menu-button">Početna</a>
-            <div class="sub-menu">
-                <a href="#" class="sub-menu-button">O nama</a><br>
-                <a href="#" class="sub-menu-button">Pretraga</a><br>
-                <a href="#" class="sub-menu-button">Pomoć</a><br>
-            </div>
-            <a href="#" class="menu-button">Korisnik</a>
-            <div class="sub-menu">
-                <a href="#" class="sub-menu-button">Ispis</a><br>
-                <a href="#" class="sub-menu-button">Spremi</a><br>
-            </div>
-            <a href="#" class="menu-button">O nama</a>
-            <div class="sub-menu" id="inbox-submenu">
-                <a href="#" class="sub-menu-button">Inbox</a><br>
-            </div>
-            <div class="sub-menu">
-                <a href="#" class="sub-menu-button">Povijest</a><br>
-                <a href="#" class="sub-menu-button">Vizija</a><br>
-                <a href="#" class="sub-menu-button">Ideja</a><br>
-                <a href="#" class="sub-menu-button">Kontakt</a><br>
+            
+            <a href="/client/pages/login.php" class="menu-button">Povratak na prijavu</a><br><br>
+            
+            <a href="/client/pages/userMenu.php" class="menu-button">Korisnik</a>  
+            
             </div>
         </div>
     </div>

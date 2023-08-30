@@ -18,6 +18,29 @@ const loginService = {
     catch (error) {
       throw new Error(`Greška u autentifikaciji: ${error.message}`);
     }
+  },
+
+  getUserDetails: async (UID) => {
+    try {
+      const response = await ajaxService.sendRequest ("POST", '/api/UserDetails/getUserDetails', UID);
+      console.log (response);
+      return response;
+
+    } catch (error) {
+      throw new Error (`Greška kod dohvaćanja detalja korisnika: ${error.message}`);
+
+    }
+  },
+  
+  insertUserDetails: async (userDetailsObj) => {
+    try {
+      const response = await ajaxService.sendRequest ('POST','/api/UserDetails/insertUserDetails', userDetailsObj);
+      console.log(response);
+      return response;
+      
+    } catch (error) {
+      throw new Error (`Greška kod upisivanja detalja korisnika: ${error.message}`);
+    }
   }
 }
 
