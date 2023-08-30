@@ -38,15 +38,25 @@ def send(client_socket, response):
 
 def put(client_socket, response):
     client_socket.sendall(response.encode())
+server_socket = None
+server_socket_lock = threading.Lock() # Locking the server thread
+running = True
+running_lock = threading.Lock() # Locking the running flag
 
 
 # Client socket function
 def handle_smtp_request():
-    with server_socket_lock:
-        client_socket, client_address = server_socket.accept()
-        print(
-                f"Incoming SMTP connection from {client_address[0]}:{client_address[1]}")
-
+    try:
+        with server_socket_lock:
+            if server_socket.fileno() != -1 and server_socket:
+                print(server_socket)
+                client_socket, client_address = server_socket.accept()
+                print(
+                    f"Incoming SMTP connection from {client_address[0]}:{client_address[1]}")
+            else:
+                sys.exit(0)
+    except Exception:
+        sys.exit(0)
     mail_from = ""
     mail_to = ""
     mail_subject = ""
@@ -131,12 +141,6 @@ def handle_smtp_request():
     client_socket.close()
     return 0
 
-
-server_socket = None
-server_socket_lock = threading.Lock() # Locking the server thread
-running = True
-running_lock = threading.Lock() # Locking the running flag
-
 # Stop function for keyboard interrupt
 def stop_server():
     global running
@@ -151,17 +155,19 @@ def start_server():
 
 def run_smtp_translator():
     global running, server_socket
+
     # Start the server thread
     server_thread = threading.Thread(target=start_server)
     server_thread.start()
     server_thread.join()
-    print(f"SMTP server started: ${server_socket}")
+
+    print(f"SMTP server started: {server_socket}")
 
     try:
+
         while running:
-            # While the server is running, start a client thread for every request
-            client_thread = threading.Thread(
-                target=handle_smtp_request)
+            # Start a client thread for every request
+            client_thread = threading.Thread(target=handle_smtp_request)
             client_thread.start()
             client_thread.join(timeout=TTL)
 
@@ -180,4 +186,3 @@ except KeyboardInterrupt:
     running_thread.start()
     running_thread.join()
     sys.exit(0)
-
