@@ -14,6 +14,9 @@
             <div class = "table select" id = "compose-mail">Novi mail</div>
             <div class="table select" id="select_mail">
                 <div class="inbox option" id="option_inbox">Inbox</div>
+                <div class="outbox option" id="option_outbox">Outbox</div>
+                <div class="delete option" id="option_delete">Delete</div>
+
             </div>
         </div>
 
