@@ -1,7 +1,7 @@
 <?php
 $rootDirectory = $_SERVER['DOCUMENT_ROOT'];
-include_once($rootDirectory . '/php/Endpoint.php');
 include_once($rootDirectory . '/php/controller/UserDetailsController.php');
+include_once($rootDirectory . "/php/Controller.php");
 $controller_uri = '/api/UserDetails';
 
 $UserDetailsController = new Controller(
