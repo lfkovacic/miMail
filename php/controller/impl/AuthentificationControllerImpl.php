@@ -6,7 +6,8 @@ $controller_uri = '/api/authentification';
 $AuthentificationController = new Controller(
     array(
         new ValidateToken('POST', $controller_uri . '/validateToken', false),
-        new ClientIp('GET', $controller_uri . '/getClientIp', false)
+        new ClientIp('GET', $controller_uri . '/getClientIp', false),
+        new GetUserId('POST', $controller_uri.'/getUserId', true)
     ),
     $controller_uri
 );

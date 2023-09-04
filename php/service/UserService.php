@@ -29,6 +29,11 @@ class UserService
         } else return array('status'=>'error', 'msg'=>'Greška kod prijave', 'stsCode'=>'LOGIN_ERROR', 'token'=>null); //False
     }
 
+    public function getUserId($username){
+        $user = $this->userRepository->getUser($username);
+        return $user[0]["UID"];
+    }
+
     public function registerUser($username, $pwd_hash)
     {
         $user = $this->userRepository->getUser($username);
