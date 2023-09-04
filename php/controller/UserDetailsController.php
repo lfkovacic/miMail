@@ -26,7 +26,7 @@ class InsertUserDetails extends Endpoint {
     protected function parseRequest(&$dto) {
         $json = file_get_contents("php://input");
         $data = json_decode($json, true);
-        $dto -> user_id = 2;
+        $dto -> user_id = $data["user_id"];
         $dto -> drzava = $data["drzava"];
         $dto -> adresa = $data["adresa"];
         $dto -> kucni_broj = $data["kucni_broj"];

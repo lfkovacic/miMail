@@ -1,3 +1,4 @@
+import { Cookie } from "../util/cookies.js";
 import ajaxService from "./ajaxService.js";
 
 const loginService = {
@@ -41,7 +42,21 @@ const loginService = {
     } catch (error) {
       throw new Error (`Greška kod upisivanja detalja korisnika: ${error.message}`);
     }
+  },
+
+  getUserId: async () => {
+    try {
+      const username = Cookie.get('username');
+      const response = await ajaxService.sendRequest ('POST','/api/authentification/getUserId', {'username': username});
+      console.log(response);
+      return response;
+      
+    } catch (error) {
+      throw new Error (`Greška kod dohvaćanja korisničkog ID-a: ${error.message}`);
+    }
   }
 }
 
 export { loginService };
+
+ 

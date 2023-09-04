@@ -7,7 +7,7 @@ const upisiButton = document.getElementById("upisi-button");
 const fSubmit = async () => {
     try {
     const userObj = {
-        user_id: 2,
+        user_id: loginService.getUserId(),
         drzava: getValueFromInput("input-drzava"), 
         adresa: getValueFromInput("input-adresa"),
         kucni_broj: getValueFromInput("input-kucni-broj"),
