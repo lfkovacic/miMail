@@ -24,3 +24,9 @@ function base64ToArrayBuffer(base64) {
     return bytes;
 }
 
+export function getValueFromInput(id) {
+        console.log (id);
+        const input = document.getElementById (id);
+        return input.value;
+    }
+

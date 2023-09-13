@@ -6,8 +6,11 @@ import { Cookie } from "../../util/cookies.js";
 const upisiButton = document.getElementById("upisi-button");
 const fSubmit = async () => {
     try {
+        const userId = await loginService.getUserId();
+        console.log(userId);
+        
     const userObj = {
-        user_id: loginService.getUserId(),
+        user_id: userId,
         drzava: getValueFromInput("input-drzava"), 
         adresa: getValueFromInput("input-adresa"),
         kucni_broj: getValueFromInput("input-kucni-broj"),
@@ -35,3 +38,4 @@ const getValueFromInput = (id) => {
     const input = document.getElementById (id);
     return input.value;
 }
+

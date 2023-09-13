@@ -48,14 +48,17 @@ const loginService = {
     try {
       const username = Cookie.get('username');
       const response = await ajaxService.sendRequest ('POST','/api/authentification/getUserId', {'username': username});
-      console.log(response);
-      return response;
+      console.log(JSON.parse(response));
+      return JSON.parse(response).uid;
       
     } catch (error) {
       throw new Error (`Greška kod dohvaćanja korisničkog ID-a: ${error.message}`);
     }
   }
+
+  
 }
+
 
 export { loginService };
 
