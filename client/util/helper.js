@@ -1,5 +1,15 @@
-const uploadFile = (filename, extension, blob) => {
-    return 0;
+export const uploadFile = (filename, extension, file) => {
+    var reader = new FileReader();
+    let arrayBuffer;
+    reader.onload = (e) => {
+        arrayBuffer = e.target.result;
+        console.log("BUFFER");
+        console.log(arrayBuffer);
+        console.log(arrayBufferToBase64(arrayBuffer));
+    }
+    reader.readAsArrayBuffer(file)
+    const str = arrayBufferToBase64(arrayBuffer);
+    return str;
 }
 
 
@@ -22,5 +32,15 @@ function base64ToArrayBuffer(base64) {
         bytes[i] = ascii;
     }
     return bytes;
+}
+
+function arrayBufferToBase64(arrB) {
+    console.log(arrB);
+    const uint8Array = new Uint8Array(arrB);
+    console.log(uint8Array);
+    console.log(btoa(String.fromCharCode.apply(null, uint8Array)));
+    const base64Str = btoa(String.fromCharCode.apply(null, uint8Array));
+    console.log(base64Str);
+    return base64Str;
 }
 

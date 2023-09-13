@@ -11,7 +11,7 @@
     <<div class="content">
         <?php include('../elements/header.php'); ?>
         <div class="form-container">
-            <form id="login-form">
+            <form id="login-form" enctype="multipart/form-data">
                 <div class="input-container">
                     <label for="input-drzava">drzava</label>
                     <input id="input-drzava" name="drzava" type="text" />
@@ -43,6 +43,10 @@
                 <div class="input-container">
                     <label for="input-oib">OIB</label>
                     <input id="input-oib" name="oib" type="text" />
+                </div>
+                <div class="input-container">
+                    <label for="input-image">Učitaj sliku</label>
+                    <input id="input-image" name="image" type="file"/>
                 </div>
                 <div id="btns-container" class="btns-container">
                     <button id="upisi-button" type="button">Upiši</button>
