@@ -2,6 +2,7 @@ import { RELATIVE_URL } from "../../consts/consts.js";
 import { loginService } from "../../api/loginService.js";
 import { processPassword, getPasswordArray } from "../../util/util.js";
 import { Cookie } from "../../util/cookies.js";
+import { getValueFromInput } from "../../util/helper.js";
 
 Cookie.delete("token");
 
@@ -10,9 +11,9 @@ let registerMode = false;
 const loginButton = document.getElementById("login-button");
 const fLogin = async () => {
   const userObj = {};
-  const username = document.getElementById('input-username').value;
+  const username = getValueFromInput('input-username');
   Cookie.set("username", username, 1);
-  let password = document.getElementById('input-password').value;
+  let password = getValueFromInput('input-password');
 
   if (!(username === "" || password === "")) {
     userObj.username = username;
@@ -65,9 +66,9 @@ const fRegister = () => {
 
 const fSubmitRegister = async () => {
   const userObj = {};
-  const username = document.getElementById('input-username').value;
-  const password = document.getElementById('input-password').value;
-  const password2 = document.getElementById('input-repeat-password').value;
+  const username = getValueFromInput('input-username');
+  const password = getValueFromInput('input-password');
+  const password2 = getValueFromInput('input-repeat-password');
 
   if (!(username === "" || password === "" || password2 === "") && (password === password2)) {
     userObj.username = username;

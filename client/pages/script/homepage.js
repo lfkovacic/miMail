@@ -1,14 +1,15 @@
-import { RELATIVE_URL } from "../../consts/consts.js";
+
 import { mailService } from "../../api/mailService.js";;
 import { Cookie } from "../../util/cookies.js";
 import { bodoviService } from "../../api/bodoviService.js";
+import { getValueFromInput } from "../../util/helper.js";
 
 const sendMailButton = document.getElementById("send-mail-button");
 const fSendMail = () => {
     const mailObj = {};
-    const recipient = document.getElementById('input-recipient').value;
-    const subject = document.getElementById('input-subject').value;
-    const content = document.getElementById('input-content').value;
+    const recipient = getValueFromInput('input-recepient');
+    const subject = getValueFromInput('input-subject');
+    const content = getValueFromInput('input-content');
 
     mailObj.sender = Cookie.get("username") + '@mimail.org';
     mailObj.recipient = recipient;

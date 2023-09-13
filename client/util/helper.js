@@ -44,3 +44,9 @@ function arrayBufferToBase64(arrB) {
     return base64Str;
 }
 
+export function getValueFromInput(id) {
+    console.log(id);
+    const input = document.getElementById(id);
+    return input.value;
+}
+
