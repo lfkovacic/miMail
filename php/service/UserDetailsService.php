@@ -19,7 +19,7 @@ class UserDetailsService
          return $sql_response;
     }
 
-    public function insertUserDetails($user_id, $drzava, $adresa, $kucni_broj, $grad, $postanski_broj, $broj_telefona, $email_adresa, $oib)
+    public function insertUserDetails($user_id, $drzava, $adresa, $kucni_broj, $grad, $postanski_broj, $broj_telefona, $email_adresa, $oib, $image)
     {
         $drzava = $this -> normalizeValue($drzava);
         $adresa = $this -> normalizeValue($adresa);
@@ -29,8 +29,11 @@ class UserDetailsService
         $broj_telefona = $this -> normalizeValue($broj_telefona);
         $email_adresa = $this -> normalizeValue($email_adresa);
         $oib = $this -> normalizeValue($oib);
+        $image = $this -> normalizeValue($image);
+        $image_blob = base64_decode($image);
+        print_r($image_blob);
 
-        $sql_response = $this->userDetailsRepository->insertUserDetails($user_id, $drzava, $adresa, $kucni_broj, $grad, $postanski_broj, $broj_telefona, $email_adresa, $oib);
+        $sql_response = $this->userDetailsRepository->insertUserDetails($user_id, $drzava, $adresa, $kucni_broj, $grad, $postanski_broj, $broj_telefona, $email_adresa, $oib, $image_blob);
 
         if ($sql_response == 1) {
             return "Detalji o korisniku uspješno uneseni.";

@@ -26,6 +26,7 @@ class InsertUserDetails extends Endpoint {
     protected function parseRequest(&$dto) {
         $json = file_get_contents("php://input");
         $data = json_decode($json, true);
+        print_r($data);
         $dto -> user_id = $data["user_id"];
         $dto -> drzava = $data["drzava"];
         $dto -> adresa = $data["adresa"];
@@ -35,6 +36,7 @@ class InsertUserDetails extends Endpoint {
         $dto -> broj_telefona = $data["broj_telefona"];
         $dto -> email_adresa = $data["email_adresa"];
         $dto -> oib = $data["oib"];  
+        $dto -> image = $data["image"];
         
     }
 
@@ -52,7 +54,9 @@ class InsertUserDetails extends Endpoint {
             $dto -> postanski_broj,
             $dto -> broj_telefona,
             $dto -> email_adresa,
-            $dto -> oib
+            $dto -> oib,
+            $dto -> image
+
          );
 
         echo json_encode($res);

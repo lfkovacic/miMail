@@ -10,10 +10,10 @@ class UserDetailsRepository extends Repository
     }
  
 
-    public function insertUserDetails($user_id, $drzava, $adresa, $kucni_broj, $grad, $postanski_broj, $broj_telefona, $email_adresa, $oib)
+    public function insertUserDetails($user_id, $drzava, $adresa, $kucni_broj, $grad, $postanski_broj, $broj_telefona, $email_adresa, $oib, $image)
     {
-        $sql = "INSERT INTO userdetails (USER_ID, DRZAVA, ADRESA_STANOVANJA, KUCNI_BROJ, GRAD, POSTANSKI_BROJ, BROJ_TELEFONA, E_MAIL_ADRESA, OIB) " .
-            "VALUES ('".$user_id."', '".$drzava."', '".$adresa."', '".$kucni_broj."', '".$grad."', '".$postanski_broj."', '".$broj_telefona."', '".$email_adresa."', '".$oib."')";
+        $sql = "INSERT INTO userdetails (USER_ID, DRZAVA, ADRESA_STANOVANJA, KUCNI_BROJ, GRAD, POSTANSKI_BROJ, BROJ_TELEFONA, E_MAIL_ADRESA, OIB, IMAGE_BLOB) " .
+            "VALUES ('".$user_id."', '".$drzava."', '".$adresa."', '".$kucni_broj."', '".$grad."', '".$postanski_broj."', '".$broj_telefona."', '".$email_adresa."', '".$oib."', '".$image."')";
          $conn = parent::connect();
         $result = $conn->query($sql);
 
