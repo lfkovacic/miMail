@@ -1,13 +1,15 @@
 import { RELATIVE_URL } from "../../consts/consts.js";
 import { loginService } from "../../api/loginService.js";
-import { processPassword, getPasswordArray } from "../../util/util.js";
-import { Cookie } from "../../util/cookies.js";
 import { uploadFile } from "../../util/helper.js";
 
 const upisiButton = document.getElementById("upisi-button");
 const fSubmit = async () => {
     try {
         const userId = await loginService.getUserId();
+        const fileInput = document.getElementById("input-image");
+        const file = fileInput.files[0];
+
+        const base64Str = await uploadFile("test", "jpg", file);
         console.log(userId);
         
     const userObj = {
@@ -20,7 +22,7 @@ const fSubmit = async () => {
         broj_telefona: getValueFromInput("input-broj-telefona"),
         email_adresa: getValueFromInput("input-email-adresa"),
         oib: getValueFromInput("input-oib"),
-        image: uploadFile("test", "png", document.getElementById("input-image").files[0])
+        image: base64Str
     };
     console.log (userObj);
     const res = await loginService.insertUserDetails(userObj);
