@@ -30,10 +30,9 @@ class UserDetailsService
         $email_adresa = $this -> normalizeValue($email_adresa);
         $oib = $this -> normalizeValue($oib);
         $image = $this -> normalizeValue($image);
-        $image_blob = base64_decode($image);
-        print_r($image_blob);
+       
 
-        $sql_response = $this->userDetailsRepository->insertUserDetails($user_id, $drzava, $adresa, $kucni_broj, $grad, $postanski_broj, $broj_telefona, $email_adresa, $oib, $image_blob);
+        $sql_response = $this->userDetailsRepository->insertUserDetails($user_id, $drzava, $adresa, $kucni_broj, $grad, $postanski_broj, $broj_telefona, $email_adresa, $oib, $image);
 
         if ($sql_response == 1) {
             return "Detalji o korisniku uspješno uneseni.";
