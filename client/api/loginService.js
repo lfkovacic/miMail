@@ -23,7 +23,9 @@ const loginService = {
 
   getUserDetails: async (UID) => {
     try {
-      const response = await ajaxService.sendRequest ("POST", '/api/UserDetails/getUserDetails', UID);
+      const response = await ajaxService.sendRequest ("POST", '/api/UserDetails/getUserDetails', {
+        UID:UID
+      });
       console.log (response);
       return response;
 

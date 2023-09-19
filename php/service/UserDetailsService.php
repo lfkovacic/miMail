@@ -1,5 +1,5 @@
 <?php
-$rootDirectory = $_SERVER['DOCUMENT_ROOT'];
+$rootDirectory = $_SERVER ['DOCUMENT_ROOT'];
 include_once($rootDirectory . "/php/repository/UserDetailsRepository.php");
 include_once($rootDirectory . '/php/jwt/Jwt.php');
 

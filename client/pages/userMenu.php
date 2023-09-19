@@ -10,6 +10,23 @@
 <body>
     <<div class="content">
         <?php include('../elements/header.php'); ?>
+        <div class="table-container">
+            <table id="table-user-detail">
+                <tr>
+                    <th>Korisničko ime</th>
+                    <th>Država</th>
+                    <th>Adresa stanovanja</th>
+                    <th>Kućni broj</th>
+                    <th>Grad</th>
+                    <th>Poštanski broj</th>
+                    <th>Broj telefona</th>
+                    <th>E-mail adresa</th>
+                    <th>OIB</th>
+                    <th>Slika</th>
+                </tr>
+                <div class="table-data-container" id= "table-data-container"></div>
+            </table>
+        </div>
         <div class="form-container">
             <form id="login-form" enctype="multipart/form-data">
                 <div class="input-container">
