@@ -26,7 +26,6 @@ class InsertUserDetails extends Endpoint {
     protected function parseRequest(&$dto) {
         $json = file_get_contents("php://input");
         $data = json_decode($json, true);
-        print_r($data);
         $dto -> user_id = $data["user_id"];
         $dto -> drzava = $data["drzava"];
         $dto -> adresa = $data["adresa"];
@@ -44,7 +43,6 @@ class InsertUserDetails extends Endpoint {
     {
         $userDetailService = new UserDetailsService();
         header("Content-Type: application/json");
-        print_r($dto);
         $res = $userDetailService -> insertUserDetails(
             $dto -> user_id, 
             $dto -> drzava, 

@@ -23,42 +23,44 @@ const loginService = {
 
   getUserDetails: async (UID) => {
     try {
-      const response = await ajaxService.sendRequest ("POST", '/api/UserDetails/getUserDetails', {
-        UID:UID
-      });
-      console.log (response);
-      return response;
+      const response = await ajaxService.sendRequest("POST", '/api/UserDetails/getUserDetails',
+        {
+          uid: UID
+        }
+      );
+      console.log(response);
+      return JSON.parse(response);
 
     } catch (error) {
-      throw new Error (`Greška kod dohvaćanja detalja korisnika: ${error.message}`);
+      throw new Error(`Greška kod dohvaćanja detalja korisnika: ${error.message}`);
 
     }
   },
-  
+
   insertUserDetails: async (userDetailsObj) => {
     try {
-      const response = await ajaxService.sendRequest ('POST','/api/UserDetails/insertUserDetails', userDetailsObj);
+      const response = await ajaxService.sendRequest('POST', '/api/UserDetails/insertUserDetails', userDetailsObj);
       console.log(response);
       return response;
-      
+
     } catch (error) {
-      throw new Error (`Greška kod upisivanja detalja korisnika: ${error.message}`);
+      throw new Error(`Greška kod upisivanja detalja korisnika: ${error.message}`);
     }
   },
 
   getUserId: async () => {
     try {
       const username = Cookie.get('username');
-      const response = await ajaxService.sendRequest ('POST','/api/authentification/getUserId', {'username': username});
-      console.log(JSON.parse(response));
+      const response = await ajaxService.sendRequest('POST', '/api/authentification/getUserId', { 'username': username });
+      console.log((response));
       return JSON.parse(response).uid;
-      
+
     } catch (error) {
-      throw new Error (`Greška kod dohvaćanja korisničkog ID-a: ${error.message}`);
+      throw new Error(`Greška kod dohvaćanja korisničkog ID-a: ${error.message}`);
     }
   }
 
-  
+
 }
 
 

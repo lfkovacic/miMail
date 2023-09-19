@@ -25,10 +25,10 @@ class UserDetailsRepository extends Repository
     public function getUserDetailsByUserId($user_id)
     {
 
-        $sql = "SELECT u.USERNAME, ud.DRZAVA, ud.ADRESA_STANOVANJA, ud.KUCNI_BROJ, ud.GRAD, ud.POSTANSKI_BROJ, ud.BROJ_TELEFONA, ud.E_MAIL_ADRESA, ud.OIB
-            FROM USER u
-            LEFT JOIN USERDETAILS ud ON u.USER_ID = ud.USER_ID
-            WHERE u.USER_ID = " . $user_id ." ORDER BY 1;";
+        $sql = "SELECT u.USERNAME, ud.DRZAVA, ud.ADRESA_STANOVANJA, ud.KUCNI_BROJ, ud.GRAD, ud.POSTANSKI_BROJ, ud.BROJ_TELEFONA, ud.E_MAIL_ADRESA, ud.OIB, ud.IMAGE_BLOB
+            FROM USERDETAILS ud
+            LEFT JOIN USER u ON ud.USER_ID = u.UID
+            WHERE ud.USER_ID = " . $user_id .";";
 
         $conn = parent::connect();
         $result = $conn->query($sql);

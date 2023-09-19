@@ -1,20 +1,33 @@
 import { RELATIVE_URL } from "../../consts/consts.js";
 import { loginService } from "../../api/loginService.js";
-import { uploadFile } from "../../util/helper.js";
+import { uploadFile, getImageFromBase64String } from "../../util/helper.js";
 
 const detailsTable = document.getElementById("table-data-container");
+const userId = await loginService.getUserId();
+console.log(userId);
 
-const userDetailsData = await loginService.getUserDetails(await loginService.getUserId());
+const res = await loginService.getUserDetails(userId);
+const userDetailsData = res[res.length-1];
+console.log(res);
+console.log(userDetailsData);
 
-const userDetailsArr = [];
-for (const key in userDetailsData) userDetailsArr.push(userDetailsData[0][key]);
-console.log(userDetailsArr);
-const row = document.createElement("tr");
-detailsTable.appendChild(row)
+const userDetailsArr = [
+    userDetailsData.USERNAME,
+    userDetailsData.DRZAVA,
+    userDetailsData.ADRESA,
+    userDetailsData.KUCNI_BROJ,
+    userDetailsData.GRAD,
+    userDetailsData.POSTANSKI_BROJ,
+    userDetailsData.BROJ_TELEFONA,
+    userDetailsData.EMAIL_ADRESA,
+    userDetailsData.OIB,
+    `<img src="${getImageFromBase64String(userDetailsData.IMAGE_BLOB)}"/>`
+];
 for (const value of userDetailsArr) {
+    console.log(value);
     const column = document.createElement("td");
     column.innerHTML = value;
-    row.appendChild(column);
+    detailsTable.appendChild(column);
 }
 
 const upisiButton = document.getElementById("upisi-button");

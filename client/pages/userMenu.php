@@ -12,19 +12,21 @@
         <?php include('../elements/header.php'); ?>
         <div class="table-container">
             <table id="table-user-detail">
-                <tr>
-                    <th>Korisničko ime</th>
-                    <th>Država</th>
-                    <th>Adresa stanovanja</th>
-                    <th>Kućni broj</th>
-                    <th>Grad</th>
-                    <th>Poštanski broj</th>
-                    <th>Broj telefona</th>
-                    <th>E-mail adresa</th>
-                    <th>OIB</th>
-                    <th>Slika</th>
-                </tr>
-                <div class="table-data-container" id= "table-data-container"></div>
+                <tbody>
+                    <tr>
+                        <th>Korisničko ime</th>
+                        <th>Država</th>
+                        <th>Adresa stanovanja</th>
+                        <th>Kućni broj</th>
+                        <th>Grad</th>
+                        <th>Poštanski broj</th>
+                        <th>Broj telefona</th>
+                        <th>E-mail adresa</th>
+                        <th>OIB</th>
+                        <th>Slika</th>
+                    </tr>
+                    <tr class="table-data-container" id="table-data-container"></tr>
+                </tbody>
             </table>
         </div>
         <div class="form-container">
@@ -63,7 +65,7 @@
                 </div>
                 <div class="input-container">
                     <label for="input-image">Učitaj sliku</label>
-                    <input id="input-image" name="image" type="file"/>
+                    <input id="input-image" name="image" type="file" />
                 </div>
                 <div id="btns-container" class="btns-container">
                     <button id="upisi-button" type="button">Upiši</button>
@@ -72,9 +74,9 @@
             </form>
         </div>
         <?php include('../elements/footer.php'); ?>
-    </div>
-    <script type="module" src="./script/userDetails.js" defer></script>
+        </div>
+        <script type="module" src="./script/userDetails.js" defer></script>
 
 </body>
-</html>
 
+</html>
