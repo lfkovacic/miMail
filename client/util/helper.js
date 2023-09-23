@@ -6,7 +6,7 @@ export const uploadFile = async (filename, extension, file) => {
         reader.onload = async (e) => {
             arrayBuffer = e.target.result;
             const str = arrayBufferToBase64(arrayBuffer);
-            resolve(str)
+            resolve(str);
         }
         reader.onerror = (err) => {
             reject(err);
@@ -28,17 +28,11 @@ export function fileDownload(file, fileName) {
 }
 
 function base64ToArrayBuffer(base64) {
-    const chunkSize = 1024; // Adjust the chunk size as needed
-    const binaryString = window.atob(base64);
     const binaryLen = binaryString.length;
     const buffer = new ArrayBuffer(binaryLen);
-    const bytes = new Uint8Array(buffer);
 
-    for (let i = 0; i < binaryLen; i += chunkSize) {
-        const end = Math.min(i + chunkSize, binaryLen);
-        for (let j = i; j < end; j++) {
-            bytes[j] = binaryString.charCodeAt(j);
-        }
+    for (const byte of new TextEncoder('ascii').encode(base64)) {
+        buffer.push(byte);
     }
 
     return buffer;
@@ -52,9 +46,11 @@ function arrayBufferToBase64(arrB) {
 
     for (let i = 0; i < bytes.length; i += chunkSize) {
         const chunk = bytes.subarray(i, i + chunkSize);
-        const chunkStr = String.fromCharCode.apply(null, chunk);
-        base64Str += btoa(chunkStr);
+        const str = new TextDecoder('ascii').decode(chunk);
+        console.log(str);
+        base64Str += window.btoa(str);
     }
+    console.log(base64Str);
 
     return base64Str;
 }
@@ -65,5 +61,10 @@ export function getValueFromInput(id) {
     return input.value;
 }
 
-
-
+export const createXMLNode = (name, attributes) => {
+    const node = document.createElement(name);
+    for (const key in attributes) {
+        node.setAttribute(key, attributes[key]);
+    }
+    return node;
+}

@@ -25,11 +25,15 @@ soapService.sendRequest = async function (method, url, data, headers) {
         body.appendChild(node);
     }
     xml.appendChild(envelope);
+    console.log(xml);
     console.log(XML.getTextContent(xml))
     const res = await remoteService.sendRequest(method, url, XML.getTextContent(xml), headers);
+    XML.toJson(xml, {});
     console.log(res);
+    const xmlString = await res.text();
+    console.log(XML.parse(xmlString));
 
-    return await res.text();
+    return await xmlString;
 
 }
 

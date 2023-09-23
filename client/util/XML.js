@@ -1,5 +1,6 @@
-export class XML {
+//Klasa za operacije s XML dokumentima
 
+class XML {
 
     constructor(meta) {
         this.root = createNewDocument(meta);
@@ -34,4 +35,33 @@ export class XML {
     static getTextContent(node) {
         return new XMLSerializer().serializeToString(node);
     }
+
+    static toJson(node, obj) {
+        if (obj.length < 1) obj = {};
+
+        const nodeName = node.nodeName;
+        obj[nodeName] = {};
+        const nodeAttributes = node.attributes;
+        obj[nodeName].attributes = nodeAttributes === undefined ? null: nodeAttributes;
+        const nodeText = node.textContent;
+        obj[nodeName].nodeText = nodeText === undefined ? null : nodeText;
+        const nodeChildren = node.children;
+
+        console.log(nodeName);
+        console.log(nodeAttributes);
+        console.log(nodeText);
+        console.log(nodeChildren);
+
+        if (node.children.length > 0)
+            for (const child of nodeChildren) this.toJson(child, obj[nodeName]);
+
+        return obj;
+
+    }
+
+    static parse(xmlStr){
+        return new DOMParser().parseFromString(xmlStr, 'text/xml');
+    }
 }
+
+export default XML;
