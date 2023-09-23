@@ -55,8 +55,10 @@ class MailRepository extends Repository
 
     public function deleteMail($mail_id)
     {
-        $sql = "DELETE FROM mail m WHERE m.mail_id = $mail_id";
+        $sql = "DELETE FROM mail WHERE MAIL_ID = $mail_id";
         $conn = parent::connect();
         $result = $conn->query($sql);
+
+        return $result;
     }
 }

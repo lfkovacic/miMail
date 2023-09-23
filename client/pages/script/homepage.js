@@ -47,7 +47,7 @@ const fGetAllMail = () => {
 }
 const fGetMail = (e) => {
     const id = e.target.id;
-    Cookie.set('mail-id', id, 1/24);
+    Cookie.set('mail-id', id, 1);
     mailService.getMail(parseInt(id)).then((response) => {
         const inputContainer = document.getElementById('input-container');
         inputContainer.className = 'hidden';

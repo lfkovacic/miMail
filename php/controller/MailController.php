@@ -88,7 +88,9 @@ class GetMailByMailId extends Endpoint{
 
 class DeleteMail extends Endpoint{
  protected function parseRequest(&$dto){
-    $dto -> id = $_GET['id'];
+    $json = file_get_contents("php://input");
+    $data = json_decode($json, true);
+    $dto->id = $data['id'];
  }
  
  protected function execute($dto) {

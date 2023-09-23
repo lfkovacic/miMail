@@ -11,7 +11,7 @@
     <div class="main-wrapper">
         <div class="sidebar">
             <h3>ODABIR:</h3>
-            <div class = "table select" id = "compose-mail">Novi mail</div>
+            <div class="table select" id="compose-mail">Novi mail</div>
             <div class="table select" id="select_mail">
                 <div class="inbox option" id="option_inbox">Inbox</div>
                 <div class="outbox option" id="option_outbox">Outbox</div>
@@ -24,9 +24,9 @@
             <?php include('../elements/header.php'); ?>
             <div class="filter"></div>
             <div class="prikaz">
-                <div class="button-obrisi" id = "obrisi">Obriši</div>
+                <div class="button-obrisi" id="button-obrisi">Obriši</div>
                 <form>
-                    <div class="input-container" id = "input-container"> 
+                    <div class="input-container" id="input-container">
                         <div class="input-container input-recipient">
                             <label for="input-recipient">Primatelj</label>
                             <input id="input-recipient" name="recipient" type="text" value="">
@@ -43,22 +43,22 @@
                             <button id="send-mail-button" type="button">Pošalji</button>
                         </div>
                     </div>
-                    <div class = "hidden" id = "mail-container">
+                    <div class="hidden" id="mail-container">
                     </div>
-                    
+
                 </form>
             </div>
             <?php include('../elements/footer.php'); ?>
         </div>
 
         <div class="sidebarMenu">
-            
+
             <a href="/client/pages/login.php" class="menu-button">Povratak na prijavu</a><br><br>
-            
-            <a href="/client/pages/userMenu.php" class="menu-button">Korisnik</a>  
-            
-            </div>
+
+            <a href="/client/pages/userMenu.php" class="menu-button">Korisnik</a>
+
         </div>
+    </div>
     </div>
 
     <script type="module" src="./script/homepage.js" defer></script>

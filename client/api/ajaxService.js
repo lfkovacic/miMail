@@ -7,7 +7,7 @@ ajaxService.sendRequest = function (method, url, data, headers) {
 
     xhr.open(method, url);
 
-    if (headers.length !== 0 || headers === null || headers === undefined)
+    if (headers?.length !== 0 || headers === null || headers === undefined)
       for (let key in headers) {
         xhr.setRequestHeader(key, headers[key]);
       } else {
