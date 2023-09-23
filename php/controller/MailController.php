@@ -84,4 +84,16 @@ class GetMailByMailId extends Endpoint{
         $response_raw = array("from"=> $from, "subject" => $subject, "content" => $content);
         echo json_encode($response_raw);
     }
-}
+ }
+
+class DeleteMail extends Endpoint{
+ protected function parseRequest(&$dto){
+    $dto -> id = $_GET['id'];
+ }
+ 
+ protected function execute($dto) {
+    $mailService = new MailService();
+    $sql_response = $mailService->deleteMail($dto->id);
+    echo json_encode($sql_response);
+ }
+} 

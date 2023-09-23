@@ -24,6 +24,7 @@
             <?php include('../elements/header.php'); ?>
             <div class="filter"></div>
             <div class="prikaz">
+                <div class="button-obrisi" id = "obrisi">Obriši</div>
                 <form>
                     <div class="input-container" id = "input-container"> 
                         <div class="input-container input-recipient">
