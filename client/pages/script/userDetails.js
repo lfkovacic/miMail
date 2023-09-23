@@ -2,33 +2,41 @@ import { RELATIVE_URL } from "../../consts/consts.js";
 import { loginService } from "../../api/loginService.js";
 import { uploadFile, getImageFromBase64String } from "../../util/helper.js";
 
-const detailsTable = document.getElementById("table-data-container");
-const userId = await loginService.getUserId();
-console.log(userId);
+loginService.getListOfContinentsByName();
 
-const res = await loginService.getUserDetails(userId);
-const userDetailsData = res[res.length-1];
-console.log(res);
-console.log(userDetailsData);
+const getUserDetails = async () => {
+    try {
 
-const userDetailsArr = [
-    userDetailsData.USERNAME,
-    userDetailsData.DRZAVA,
-    userDetailsData.ADRESA,
-    userDetailsData.KUCNI_BROJ,
-    userDetailsData.GRAD,
-    userDetailsData.POSTANSKI_BROJ,
-    userDetailsData.BROJ_TELEFONA,
-    userDetailsData.EMAIL_ADRESA,
-    userDetailsData.OIB,
-    `<img src="${getImageFromBase64String(userDetailsData.IMAGE_BLOB)}"/>`
-];
-for (const value of userDetailsArr) {
-    console.log(value);
-    const column = document.createElement("td");
-    column.innerHTML = value;
-    detailsTable.appendChild(column);
+        const detailsTable = document.getElementById("table-data-container");
+        const userId = await loginService.getUserId();
+        console.log(userId);
+
+        const res = await loginService.getUserDetails(userId);
+        const userDetailsData = res[res.length - 1];
+        console.log(res);
+        console.log(userDetailsData);
+
+        const userDetailsArr = [
+            userDetailsData.USERNAME,
+            userDetailsData.DRZAVA,
+            userDetailsData.ADRESA,
+            userDetailsData.KUCNI_BROJ,
+            userDetailsData.GRAD,
+            userDetailsData.POSTANSKI_BROJ,
+            userDetailsData.BROJ_TELEFONA,
+            userDetailsData.EMAIL_ADRESA,
+            userDetailsData.OIB,
+            `<img src="${getImageFromBase64String(userDetailsData.IMAGE_BLOB)}"/>`
+        ];
+        for (const value of userDetailsArr) {
+            console.log(value);
+            const column = document.createElement("td");
+            column.innerHTML = value;
+            detailsTable.appendChild(column);
+        }
+    } catch (e) { console.error(e) }
 }
+getUserDetails();
 
 const upisiButton = document.getElementById("upisi-button");
 const fSubmit = async () => {

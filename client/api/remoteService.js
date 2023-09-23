@@ -1,9 +1,14 @@
 export const remoteService = {
-    sendRequest: async (url) => {
+    sendRequest: async (method, url, _data, headers) => {
+        console.log(_data);
         try {
-            const response = await fetch(url);
-            const data = await response.json();
-            return data;
+            const response = await fetch(url, {
+                mode: "cors",
+                method: method,
+                body: _data,
+                headers: headers
+            });
+            return response;
         } catch (e) {
             console.error(e);
         }

@@ -1,20 +1,21 @@
 import { Cookie } from "../util/cookies.js";
 const ajaxService = {};
 
-ajaxService.sendRequest = function (method, url, data, headers = {},
-  responseType = 'application/json') {
+ajaxService.sendRequest = function (method, url, data, headers) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
 
     xhr.open(method, url);
 
-    for (let key in headers) {
-      xhr.setRequestHeader(key, headers[key]);
+    if (headers.length !== 0 || headers === null || headers === undefined)
+      for (let key in headers) {
+        xhr.setRequestHeader(key, headers[key]);
+      } else {
+      xhr.setRequestHeader('Accept', "application/json");
+      xhr.setRequestHeader("Content-Type", "application/json")
     }
-
-    xhr.responseType = responseType;
     const token = Cookie.get('token').trim();
-    xhr.setRequestHeader('Authorization', 'Bearer '+token);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
 
     xhr.onload = function () {
       if (xhr.status === 200) {
