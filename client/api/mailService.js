@@ -27,6 +27,14 @@ const mailService = {
         } catch (e) {
             console.error(e);
         }
+    },
+    deleteMail: async (id) => {
+        try {
+            const response = await ajaxService.sendRequest('POST', `/api/mail/deleteMail`, {id:id});
+            return JSON.parse(response);
+        } catch (e) {
+            console.error(e);
+        }
     }
 }
 

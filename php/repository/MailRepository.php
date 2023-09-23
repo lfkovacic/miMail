@@ -44,12 +44,19 @@ class MailRepository extends Repository
 
     public function insertMail($user_id, $subject, $from, $content)
     {
-        //TODO: BLOB
+       
         $sql = "INSERT INTO mail (USER_ID, M_SUBJECT, M_FROM, M_CONTENT) " .
             "VALUES ('" . $user_id . "', '" . $subject . "', '" . $from . "', '" . $content . "')";
         $conn = parent::connect();
         $result = $conn->query($sql);
 
         return $result;
+    }
+
+    public function deleteMail($mail_id)
+    {
+        $sql = "DELETE FROM mail m WHERE m.mail_id = $mail_id";
+        $conn = parent::connect();
+        $result = $conn->query($sql);
     }
 }

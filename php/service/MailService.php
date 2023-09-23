@@ -39,4 +39,11 @@ class MailService
             return "Nema mailova za prikaz";
         } else return $response;
     }
+
+    public function deleteMail($mail_id){
+        $response = $this->mailRepository->deleteMail($mail_id);
+        if ($response == 1){
+            return "Mail uspješno obrisan";
+        } else return $response;
+    }
 }

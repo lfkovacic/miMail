@@ -47,6 +47,7 @@ const fGetAllMail = () => {
 }
 const fGetMail = (e) => {
     const id = e.target.id;
+    Cookie.set('mail-id', id, 1/24);
     mailService.getMail(parseInt(id)).then((response) => {
         const inputContainer = document.getElementById('input-container');
         inputContainer.className = 'hidden';
@@ -99,4 +100,14 @@ bodoviService.getClientIp().then(res=>{
 bodoviService.getClientCountry(Cookie.get("ip")).then(res=>{
     console.log(res);
 })
+
+const fObrisi = () => {
+    const id = Cookie.get('mail-id');
+    if (id === undefined || !id) throw new Error('mail nije označen');
+    else mailService.deleteMail(parseInt(id)).then(response => {console.log (response)})
+}
+
+const obrisiButton = document.getElementById('button-obrisi');
+obrisiButton.addEventListener('click', fObrisi);
+
 

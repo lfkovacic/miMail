@@ -9,7 +9,8 @@ $MailController = new Controller(
         new SendMail('POST', $controller_uri . '/sendMail', true),
         new ReceiveMail('POST', $controller_uri . '/receiveMail', false),
         new GetAllMail('GET', $controller_uri.'/getAllMail', true),
-        new GetMailByMailId('GET', $controller_uri.'/getMail', true)
+        new GetMailByMailId('GET', $controller_uri.'/getMail', true),
+        new DeleteMail('POST', $controller_uri.'/deleteMail', true)
     ),
     $controller_uri
 );
