@@ -58,6 +58,11 @@ function arrayBufferToBase64(arrB) {
 export function getValueFromInput(id) {
     console.log(id);
     const input = document.getElementById(id);
+    console.log(document.childNodes);
+    console.log(document.getElementById(id));
+    console.log(document.getElementById("input-recipient"));
+    console.log(input);
+    console.log(input.value);
     return input.value;
 }
 

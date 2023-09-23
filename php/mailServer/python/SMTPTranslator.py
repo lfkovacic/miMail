@@ -163,11 +163,7 @@ def run_smtp_translator():
     try:
         while running:
             # Start a client thread for every request
-            client_thread = threading.Thread(target=handle_smtp_request)
-            client_thread.start()
-            print(f"Client thread started: {client_thread.name}")
-            client_thread.join(timeout=TTL)
-            print(f"Client thread finished: {client_thread.name}")
+            handle_smtp_request()
     finally:
         # If the server is still running, close it
         if server_socket:

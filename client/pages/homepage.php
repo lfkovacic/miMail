@@ -24,12 +24,11 @@
             <?php include('../elements/header.php'); ?>
             <div class="filter"></div>
             <div class="prikaz">
-                <div class="button-obrisi" id="button-obrisi">Obriši</div>
                 <form>
                     <div class="input-container" id="input-container">
                         <div class="input-container input-recipient">
-                            <label for="input-recipient">Primatelj</label>
-                            <input id="input-recipient" name="recipient" type="text" value="">
+                            <label for="input-recepient">Primatelj</label>
+                            <input id="input-recepient" name="recepient" type="text" value="">
                         </div>
                         <div class="input-container input-subject">
                             <label for="input-subject">Subjekt</label>

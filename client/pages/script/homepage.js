@@ -3,13 +3,13 @@ import { mailService } from "../../api/mailService.js";;
 import { Cookie } from "../../util/cookies.js";
 import { bodoviService } from "../../api/bodoviService.js";
 import { getValueFromInput } from "../../util/helper.js";
-
 const sendMailButton = document.getElementById("send-mail-button");
 const fSendMail = () => {
     const mailObj = {};
-    const recipient = getValueFromInput('input-recepient');
-    const subject = getValueFromInput('input-subject');
-    const content = getValueFromInput('input-content');
+
+    const recipient = getValueFromInput("input-recepient");
+    const subject = getValueFromInput("input-subject");
+    const content = getValueFromInput("input-content");
 
     mailObj.sender = Cookie.get("username") + '@mimail.org';
     mailObj.recipient = recipient;
@@ -92,19 +92,19 @@ const fShowComposeMail = () => {
 const composeMail = document.getElementById('compose-mail');
 composeMail.addEventListener('click', fShowComposeMail);
 
-bodoviService.getClientIp().then(res=>{
+bodoviService.getClientIp().then(res => {
     console.log(res);
     Cookie.set("ip", res.ip);
 })
 
-bodoviService.getClientCountry(Cookie.get("ip")).then(res=>{
+bodoviService.getClientCountry(Cookie.get("ip")).then(res => {
     console.log(res);
 })
 
 const fObrisi = () => {
     const id = Cookie.get('mail-id');
     if (id === undefined || !id) throw new Error('mail nije označen');
-    else mailService.deleteMail(parseInt(id)).then(response => {console.log (response)})
+    else mailService.deleteMail(parseInt(id)).then(response => { console.log(response) })
 }
 
 const obrisiButton = document.getElementById('button-obrisi');
