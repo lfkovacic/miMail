@@ -1,4 +1,3 @@
-import ajaxService from "./ajaxService.js";
 import { remoteService } from "./remoteService.js";
 
 const bodoviService = {

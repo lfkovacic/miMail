@@ -17,7 +17,7 @@ class SendMail extends Endpoint
         $dto->subject = $data['subject'];
         $dto->body = $data['body'];
         $dto->headers = $data['headers'];
-        //todo blob
+      
     }
 
     protected function execute($dto)

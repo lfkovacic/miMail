@@ -73,7 +73,7 @@ class Mail
         $smtp_conn->put("To: $to\r\n");
         $smtp_conn->put("\r\n");
         $smtp_conn->put("$message\r\n");
-        //TODO: blob
+    
         echo "End data, get response:\n";
         echo "Server:" . $smtp_conn->send(".\r\n");
 
