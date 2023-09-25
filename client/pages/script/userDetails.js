@@ -1,5 +1,3 @@
-import { RELATIVE_URL } from "../../consts/consts.js";
-import XML from "../../util/XML.js";
 import { loginService } from "../../api/loginService.js";
 import { uploadFile, getImageFromBase64String } from "../../util/helper.js";
 import { bodoviService } from "../../api/bodoviService.js";

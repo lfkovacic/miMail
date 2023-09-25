@@ -91,3 +91,4 @@ class MyJwt
         return $base64Url;
     }
 }
+ 

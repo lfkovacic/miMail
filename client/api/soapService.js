@@ -1,4 +1,3 @@
-import ajaxService from "./ajaxService.js";
 import XML from "../util/XML.js";
 import { remoteService } from "./remoteService.js";
 
