@@ -12,20 +12,19 @@ const getUserDetails = async () => {
         console.log(userId);
 
         const res = await loginService.getUserDetails(userId);
-        const userDetailsData = res[res.length - 1];
+        const userDetailsData = res;
         console.log(res);
-        console.log(userDetailsData);
 
         const userDetailsArr = [
             userDetailsData.USERNAME,
             userDetailsData.DRZAVA,
-            userDetailsData.ADRESA,
-            userDetailsData.KUCNI_BROJ,
+            userDetailsData.ADRESA_STANOVANJA,
+            userDetailsData.KUCNI_BROJ==0?null:userDetailsData.KUCNI_BROJ,
             userDetailsData.GRAD,
-            userDetailsData.POSTANSKI_BROJ,
-            userDetailsData.BROJ_TELEFONA,
-            userDetailsData.EMAIL_ADRESA,
-            userDetailsData.OIB,
+            userDetailsData.POSTANSKI_BROJ==0?null:userDetailsData.POSTANSKI_BROJ,
+            userDetailsData.BROJ_TELEFONA==0?null:userDetailsData.BROJ_TELEFONA,
+            userDetailsData.E_MAIL_ADRESA,
+            userDetailsData.OIB==0?null:userDetailsData.OIB,
             `<img src="${getImageFromBase64String(userDetailsData.IMAGE_BLOB)}"/>`
         ];
         for (const value of userDetailsArr) {

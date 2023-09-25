@@ -32,7 +32,6 @@ class UserDetailsService
 
 
         $sql_response = $this->userDetailsRepository->insertUserDetails($user_id, $drzava, $adresa, $kucni_broj, $grad, $postanski_broj, $broj_telefona, $email_adresa, $oib, $image);
-
         if ($sql_response == 1) {
             return "Detalji o korisniku uspješno uneseni.";
         } else {

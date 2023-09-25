@@ -18,7 +18,7 @@ class GetUserDetailsByUserId extends Endpoint
         $userDetailService = new UserDetailsService();
         header("Content-Type: application/json");
         $res = $userDetailService -> getUserDetailsByUserId($dto -> UID);
-        echo json_encode($res);
+        echo json_encode($res[0]); //Samo zadnji rezultat pretrage
     }
 }
 
