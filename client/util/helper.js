@@ -6,16 +6,6 @@ export const uploadFile = async (filename, extension, file) => {
         reader.onload = async (e) => {
             arrayBuffer = e.target.result;
             const str = await arrayBufferToBase64(arrayBuffer);
-            console.log(str);
-            console.log('arr');
-            const arr = base64ToArrayBuffer(str);
-            console.log(arr);
-            console.log(arr);
-            console.log("base64");
-            const base64Str = await arrayBufferToBase64(arr);
-            console.log(base64Str);
-            console.log("URL");
-            console.log(getImageFromBase64String(base64Str))
             resolve(str);
         }
         reader.onerror = (err) => {

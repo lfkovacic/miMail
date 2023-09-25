@@ -9,14 +9,11 @@ class XML {
     static createNewDocument(meta) {
         const xml = document.implementation.createDocument("", "", null);
         let metaStr = '';
-        console.log(meta);
         for (const key in meta) {
             metaStr += `${key}="${meta[key]}" `;
-            console.log(metaStr);
         }
         let xmlDeclaration = xml.createProcessingInstruction("xml", metaStr);
         xml.appendChild(xmlDeclaration);
-        console.log(xml);
 
         return xml;
     }
@@ -46,11 +43,6 @@ class XML {
         const nodeText = node.textContent;
         obj[nodeName].nodeText = nodeText === undefined ? null : nodeText;
         const nodeChildren = node.children;
-
-        console.log(nodeName);
-        console.log(nodeAttributes);
-        console.log(nodeText);
-        console.log(nodeChildren);
 
         if (node.children.length > 0)
             for (const child of nodeChildren) this.toJson(child, obj[nodeName]);

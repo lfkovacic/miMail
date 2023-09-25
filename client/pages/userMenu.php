@@ -33,7 +33,9 @@
             <form id="login-form" enctype="multipart/form-data">
                 <div class="input-container">
                     <label for="input-drzava">drzava</label>
-                    <input id="input-drzava" name="drzava" type="text" />
+                    <select id="input-drzava" name="drzava">
+                        
+                    </select>
                 </div>
                 <div class="input-container">
                     <label for="input-adresa">adresa</label>

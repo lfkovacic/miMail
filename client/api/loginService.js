@@ -14,7 +14,7 @@ const loginService = {
   authenticateUser: async (userObj) => {
     try {
       const response = await ajaxService.sendRequest('POST', '/api/login/authenticateUser', userObj);
-      console.log(response);
+
       return response;
     }
     catch (error) {
@@ -29,7 +29,7 @@ const loginService = {
           uid: UID
         }
       );
-      console.log(response);
+
       return JSON.parse(response);
 
     } catch (error) {
@@ -41,7 +41,7 @@ const loginService = {
   insertUserDetails: async (userDetailsObj) => {
     try {
       const response = await ajaxService.sendRequest('POST', '/api/UserDetails/insertUserDetails', userDetailsObj);
-      console.log(response);
+
       return response;
 
     } catch (error) {
@@ -53,7 +53,6 @@ const loginService = {
     try {
       const username = Cookie.get('username');
       const response = await ajaxService.sendRequest('POST', '/api/authentification/getUserId', { 'username': username });
-      console.log((response));
       return JSON.parse(response).uid;
 
     } catch (error) {
@@ -68,16 +67,15 @@ const loginService = {
         {
           listOfContinentsByName: {
             attributes:
-              { xmlns:"http://www.oorsprong.org/websamples.countryinfo" }
+              { xmlns: "http://www.oorsprong.org/websamples.countryinfo" }
             , text: null
           }
         },
-        {'Content-Type': 'application/x-www-form-urlencoded', Accept: "*/*" })
-      console.log(response);
+        { 'Content-Type': 'application/x-www-form-urlencoded', Accept: "*/*" })
+
     } catch (error) {
       console.error(error);
     }
-
   }
 
 

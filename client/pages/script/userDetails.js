@@ -1,19 +1,28 @@
 import { RELATIVE_URL } from "../../consts/consts.js";
+import XML from "../../util/XML.js";
 import { loginService } from "../../api/loginService.js";
 import { uploadFile, getImageFromBase64String } from "../../util/helper.js";
+import { bodoviService } from "../../api/bodoviService.js";
 
-loginService.getListOfContinentsByName();
+const countryOptions = await bodoviService.getListOfCountries();
+const countrySelect = document.getElementById('input-drzava');
+for (const option of countryOptions.getElementsByTagName('tCountryCodeAndName')) {
+    const name = option.getElementsByTagName('sName')[0].innerHTML;
+    const code = option.getElementsByTagName('sISOCode')[0].innerHTML;
+    const optionInput = document.createElement('option');
+    optionInput.value = code;
+    optionInput.innerHTML = name;
+    countrySelect.appendChild(optionInput);
+}
 
 const getUserDetails = async () => {
     try {
 
         const detailsTable = document.getElementById("table-data-container");
         const userId = await loginService.getUserId();
-        console.log(userId);
 
         const res = await loginService.getUserDetails(userId);
         const userDetailsData = res;
-        console.log(res);
 
         const userDetailsArr = [
             userDetailsData.USERNAME,
@@ -28,7 +37,6 @@ const getUserDetails = async () => {
             `<img src="${getImageFromBase64String(userDetailsData.IMAGE_BLOB)}"/>`
         ];
         for (const value of userDetailsArr) {
-            console.log(value);
             const column = document.createElement("td");
             column.innerHTML = value;
             detailsTable.appendChild(column);
@@ -45,7 +53,6 @@ const fSubmit = async () => {
         const file = fileInput.files[0];
 
         const base64Str = await uploadFile("test", "jpg", file);
-        console.log(userId);
 
         const userObj = {
             user_id: userId,
@@ -59,9 +66,7 @@ const fSubmit = async () => {
             oib: getValueFromInput("input-oib"),
             image: base64Str
         };
-        console.log(userObj);
         const res = await loginService.insertUserDetails(userObj);
-        console.log(res);
     }
 
     catch (error) {
@@ -72,7 +77,6 @@ const fSubmit = async () => {
 
 upisiButton.addEventListener("click", fSubmit);
 const getValueFromInput = (id) => {
-    console.log(id);
     const input = document.getElementById(id);
     return input.value;
 }
