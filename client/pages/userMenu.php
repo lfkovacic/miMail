@@ -15,11 +15,7 @@
                 <tbody>
                     <tr>
                         <th>Korisničko ime</th>
-                        <th>Država</th>
                         <th>Adresa stanovanja</th>
-                        <th>Kućni broj</th>
-                        <th>Grad</th>
-                        <th>Poštanski broj</th>
                         <th>Broj telefona</th>
                         <th>E-mail adresa</th>
                         <th>OIB</th>

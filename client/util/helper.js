@@ -37,15 +37,12 @@ function base64ToArrayBuffer(base64Str) {
 }
 
 
-// note: `buffer` arg can be an ArrayBuffer or a Uint8Array
 async function arrayBufferToBase64(buffer) {
-    // use a FileReader to generate a base64 data URI:
     const base64url = await new Promise(r => {
         const reader = new FileReader()
         reader.onload = () => r(reader.result)
         reader.readAsDataURL(new Blob([buffer]))
     });
-    // remove the `data:...;base64,` part from the star
     const base64Str = base64url.slice(base64url.indexOf(',') + 1);
     return base64Str;
 }

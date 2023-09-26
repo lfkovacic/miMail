@@ -5,8 +5,6 @@ include_once($rootDirectory . "/php/consts/url.php");
 
 abstract class Repository
 {
-
-
     protected $table;
 
     public function __construct($table)

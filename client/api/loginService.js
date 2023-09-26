@@ -58,27 +58,7 @@ const loginService = {
     } catch (error) {
       throw new Error(`Greška kod dohvaćanja korisničkog ID-a: ${error.message}`);
     }
-  },
-
-  getListOfContinentsByName: async () => {
-    try {
-      const response = await soapService.sendRequest('POST',
-        'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfContinentsByName',
-        {
-          listOfContinentsByName: {
-            attributes:
-              { xmlns: "http://www.oorsprong.org/websamples.countryinfo" }
-            , text: null
-          }
-        },
-        { 'Content-Type': 'application/x-www-form-urlencoded', Accept: "*/*" })
-
-    } catch (error) {
-      console.error(error);
-    }
   }
-
-
 }
 
 

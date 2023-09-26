@@ -24,11 +24,7 @@ const getUserDetails = async () => {
 
         const userDetailsArr = [
             userDetailsData.USERNAME,
-            userDetailsData.DRZAVA,
-            userDetailsData.ADRESA_STANOVANJA,
-            userDetailsData.KUCNI_BROJ==0?null:userDetailsData.KUCNI_BROJ,
-            userDetailsData.GRAD,
-            userDetailsData.POSTANSKI_BROJ==0?null:userDetailsData.POSTANSKI_BROJ,
+            userDetailsData.ADRESA,
             userDetailsData.BROJ_TELEFONA==0?null:userDetailsData.BROJ_TELEFONA,
             userDetailsData.E_MAIL_ADRESA,
             userDetailsData.OIB==0?null:userDetailsData.OIB,
