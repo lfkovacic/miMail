@@ -115,4 +115,9 @@ form {
 
 .input-button {
     align-items: flex-start;
+
+}
+.input-filter {
+    display: flex;
+    flex-direction: row;
 }

@@ -35,7 +35,18 @@ const mailService = {
         } catch (e) {
             console.error(e);
         }
+    },
+
+    getMailByKeyWord: async (id, keyword) => {
+        try {
+            const response = await ajaxService.sendRequest('GET', `/api/mail/getMailByKeyWord?id=${id}&keyword=${keyword}`);
+            return JSON.parse(response);
+        } catch (e) {
+            console.error(e);
+            
+        }
     }
+
 }
 
 export { mailService };
