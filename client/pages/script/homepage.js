@@ -99,6 +99,7 @@ bodoviService.getClientIp().then(res => {
 
 const fObrisi = () => {
     const id = Cookie.get('mail-id');
+    console.log(mailService);
     if (id === undefined || !id) throw new Error('mail nije označen');
     else mailService.deleteMail(parseInt(id)).then(response => { console.log(response) })
 }

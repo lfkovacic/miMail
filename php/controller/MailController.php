@@ -99,3 +99,18 @@ class DeleteMail extends Endpoint{
     echo json_encode($sql_response);
  }
 } 
+
+class GetMailByKeyWord extends Endpoint{
+
+    protected function parseRequest(&$dto){
+        $dto -> id = $_GET['id'];
+        $dto -> key_word = $_GET['keyword'];
+
+    }
+
+protected function execute($dto) {
+    $mailService = new MailService();
+    $sql_response = $mailService -> getMailByKeyWord($dto->id, $dto->key_word);
+    echo json_encode($sql_response);
+}
+}

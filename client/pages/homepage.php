@@ -23,7 +23,8 @@
         <div class="content">
             <?php include('../elements/header.php'); ?>
             <div class="filter"></div>
-            <div class="prikaz">
+            <div class="prikaz">  
+                <button id="button-obrisi" type="button">Obriši</button>
                 <form>
                     <div class="input-container" id="input-container">
                         <div class="input-container input-recipient">

@@ -61,4 +61,14 @@ class MailRepository extends Repository
 
         return $result;
     }
+
+    public function getMailByKeyWord($user_id, $key_word){
+        $sql = "SELECT FROM mail m WHERE m.USER_ID = $user_id
+        AND (UPPER (m.M_SUBJECT) LIKE UPPER ('%$key_word%') OR UPPER(m.M_CONTENT) LIKE UPPER('%$key_word%'));";
+        $conn = parent::connect();
+        $result = $conn -> query($sql);
+
+        return $result;
+    }
+
 }

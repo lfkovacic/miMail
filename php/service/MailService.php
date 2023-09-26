@@ -46,4 +46,12 @@ class MailService
             return "Mail uspješno obrisan";
         } else return $response;
     }
+
+    public function getMailByKeyWord($user_id, $key_word) {
+        $response = $this -> mailRepository -> getMailByKeyWord($user_id, $key_word);
+        if ($response !== null){
+            return $response;  
+        }
+        else return "Mail nije pronađen!";
+    }
 }
