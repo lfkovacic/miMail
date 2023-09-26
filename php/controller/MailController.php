@@ -17,7 +17,6 @@ class SendMail extends Endpoint
         $dto->subject = $data['subject'];
         $dto->body = $data['body'];
         $dto->headers = $data['headers'];
-      
     }
 
     protected function execute($dto)
@@ -71,46 +70,62 @@ class GetAllMail extends Endpoint
     }
 }
 
-class GetMailByMailId extends Endpoint{
-    protected function parseRequest(&$dto){
+class GetMailByMailId extends Endpoint
+{
+    protected function parseRequest(&$dto)
+    {
         $dto->id = $_GET['id'];
     }
-    protected function execute($dto){
+    protected function execute($dto)
+    {
         $mailService = new MailService();
         $sql_response = $mailService->getMail($dto->id);
         $from = $sql_response[0]['M_FROM'];
         $subject = $sql_response[0]['M_SUBJECT'];
         $content = $sql_response[0]['M_CONTENT'];
-        $response_raw = array("from"=> $from, "subject" => $subject, "content" => $content);
+        $response_raw = array("from" => $from, "subject" => $subject, "content" => $content);
         echo json_encode($response_raw);
     }
- }
+}
 
-class DeleteMail extends Endpoint{
- protected function parseRequest(&$dto){
-    $json = file_get_contents("php://input");
-    $data = json_decode($json, true);
-    $dto->id = $data['id'];
- }
- 
- protected function execute($dto) {
-    $mailService = new MailService();
-    $sql_response = $mailService->deleteMail($dto->id);
-    echo json_encode($sql_response);
- }
-} 
-
-class GetMailByKeyWord extends Endpoint{
-
-    protected function parseRequest(&$dto){
-        $dto -> id = $_GET['id'];
-        $dto -> key_word = $_GET['keyword'];
-
+class DeleteMail extends Endpoint
+{
+    protected function parseRequest(&$dto)
+    {
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
+        $dto->id = $data['id'];
     }
 
-protected function execute($dto) {
-    $mailService = new MailService();
-    $sql_response = $mailService -> getMailByKeyWord($dto->id, $dto->key_word);
-    echo json_encode($sql_response);
+    protected function execute($dto)
+    {
+        $mailService = new MailService();
+        $sql_response = $mailService->deleteMail($dto->id);
+        echo json_encode($sql_response);
+    }
 }
+
+class GetMailByKeyWord extends Endpoint
+{
+
+    protected function parseRequest(&$dto)
+    {
+        $dto->id = $_GET['id'];
+        $dto->key_word = $_GET['keyword'];
+    }
+
+    protected function execute($dto)
+    {
+        $mailService = new MailService();
+        $sql_response = $mailService->getMailByKeyWord($dto->id, $dto->key_word);
+        $response_raw = array();
+        foreach ($sql_response as $mail) {
+            $mail_id = $mail['MAIL_ID'];
+            $from = $mail['M_FROM'];
+            $subject = $mail['M_SUBJECT'];
+            $mail_arr = array("id" => $mail_id, "from" => $from, "subject" => $subject);
+            array_push($response_raw, $mail_arr);
+        }
+        echo json_encode($response_raw);
+    }
 }
