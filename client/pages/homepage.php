@@ -26,7 +26,7 @@
             <div class="prikaz">  
                 <div class="input-filter" id="input-filter">
                     <label for="input-keyword">Pretraga po ključnoj riječi</label>
-                    <input id="input-keyword" name="keyword" type="text" value="">
+                    <input id="input-keyword" name="keyword" type="text" value="" />
                     <button id="button-pretrazi" type="button">Pretraži</button>
                     <button id="button-obrisi" type="button">Obriši</button>
                 </div>
@@ -59,7 +59,7 @@
 
         <div class="sidebarMenu">
 
-            <a href="/client/pages/login.php" class="menu-button">Povratak na prijavu</a><br><br>
+            <a href="/client/pages/login.php" class="menu-button">Povratak na prijavu</a>
 
             <a href="/client/pages/userMenu.php" class="menu-button">Korisnik</a>
 

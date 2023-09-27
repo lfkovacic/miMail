@@ -14,11 +14,11 @@
             <form id="login-form">
                 <div class="input-container">
                     <label for="input-username">Username</label>
-                    <input id="input-username" name="username" type="text" />
+                    <input id="input-username" name="username" type="text">
                 </div>
                 <div class="input-container">
                     <label for="input-password">Password</label>
-                    <input id="input-password" name="password" type="password" />
+                    <input id="input-password" name="password" type="password">
                 </div>
                 <div id="btns-container" class="btns-container">
                     <button id="login-button" type="button">Login</button>

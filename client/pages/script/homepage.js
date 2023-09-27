@@ -45,7 +45,7 @@ const fGetAllMail = () => {
 
     if (!isMailFetched) {
         mailService.getAllMail().then((response) => {
-            displayMailList(res);
+            displayMailList(response);
         })
         isMailFetched = true;
 
