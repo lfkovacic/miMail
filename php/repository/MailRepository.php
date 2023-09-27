@@ -64,7 +64,7 @@ class MailRepository extends Repository
 
     public function getMailByKeyWord($user_id, $key_word){
         $sql = "SELECT m.* FROM MAIL m WHERE USER_ID = $user_id 
-        AND (M_SUBJECT LIKE '%$key_word%');";
+        AND (M_SUBJECT LIKE '%$key_word%' or M_CONTENT LIKE '%$key_word%');";
         $conn = parent::connect();
         $result = $conn -> query($sql);
 
