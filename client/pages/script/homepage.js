@@ -3,6 +3,7 @@ import { mailService } from "../../api/mailService.js";;
 import { Cookie } from "../../util/cookies.js";
 import { bodoviService } from "../../api/bodoviService.js";
 import { getValueFromInput } from "../../util/helper.js";
+import { loginService } from "../../api/loginService.js";
 const sendMailButton = document.getElementById("send-mail-button");
 const fSendMail = () => {
     const mailObj = {};
@@ -27,19 +28,24 @@ const fSendMail = () => {
 }
 sendMailButton.addEventListener("click", fSendMail);
 let isMailFetched = false;
+const displayMailList = (res) => {
+    const inbox = document.getElementById('option_inbox');
+    inbox.innerHTML = "";
+
+    for (const mail of res) {
+        const mailDiv = document.createElement('div');
+        mailDiv.id = mail.id;
+        mailDiv.innerHTML = mail.subject;
+        mailDiv.addEventListener('click', (e) => fGetMail(e))
+        inbox.appendChild(mailDiv);
+    }
+
+}
 const fGetAllMail = () => {
 
     if (!isMailFetched) {
-        const inbox = document.getElementById('option_inbox');
-        const arr = [];
         mailService.getAllMail().then((response) => {
-            for (const mail of response) {
-                const mailDiv = document.createElement('div');
-                mailDiv.id = mail.id;
-                mailDiv.innerHTML = mail.subject;
-                mailDiv.addEventListener('click', (e) => fGetMail(e))
-                inbox.appendChild(mailDiv);
-            }
+            displayMailList(res);
         })
         isMailFetched = true;
 
@@ -99,11 +105,25 @@ bodoviService.getClientIp().then(res => {
 
 const fObrisi = () => {
     const id = Cookie.get('mail-id');
+    console.log(mailService);
     if (id === undefined || !id) throw new Error('mail nije označen');
     else mailService.deleteMail(parseInt(id)).then(response => { console.log(response) })
 }
 
+const fPretrazi = () => {
+    loginService.getUserId().then(id => {
+        const keyword = getValueFromInput('input-keyword');
+        console.log(`id:${id}, keyword:${keyword}`);
+        const res = mailService.getMailByKeyWord(id, keyword).then(response => {
+            displayMailList(response);
+        });
+    })
+}
+
 const obrisiButton = document.getElementById('button-obrisi');
 obrisiButton.addEventListener('click', fObrisi);
+
+const pretraziButton = document.getElementById('button-pretrazi');
+pretraziButton.addEventListener('click', fPretrazi);
 
 

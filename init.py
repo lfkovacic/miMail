@@ -36,14 +36,14 @@ def main():
     thread2 = threading.Thread(target=run, args=([Apache2_path],))
     thread3 = threading.Thread(target=run, args=(
         [MySQL_path, "--defaults-file=../../mysql/bin/my.ini"],))
-    thread4 = threading.Thread(target=run, args=(["python", logger_path],))
+    #thread4 = threading.Thread(target=run, args=(["python", logger_path],))
 
     # asinhrono pokretanje
 
     thread1.start()
     thread2.start()
     thread3.start()
-    thread4.start()
+   # thread4.start()
 
     # čekanje određenog vremena (vrijednost 1 odabrana za testiranje)
 
@@ -54,14 +54,14 @@ def main():
     print(thread1)
     print(thread2)
     print(thread3)
-    print(thread4)
+    #print(thread4)
 
     # nakon izvršavanja dretvi joinanje s timeout-om. dretva se i dalje izvodi, ali kod gleda koji je status serverâ
 
     thread1.join(timeout=1)
     thread2.join(timeout=1)
     thread3.join(timeout=1)
-    thread4.join(timeout=1)
+    #thread4.join(timeout=1)
 
     # ako su sve dretve pokrenute, sve komponente servera rade.
 

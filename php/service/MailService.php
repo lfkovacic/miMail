@@ -25,25 +25,34 @@ class MailService
             return "Korisnik nije pronađen!";
     }
 
-    public function getAllMail($username){
+    public function getAllMail($username)
+    {
         $user = $this->userRepository->getUser($username);
         $response = $this->mailRepository->getMailByUserId($user[0]['UID']);
-        if ($response == array()){
+        if ($response == array()) {
             return "Nema mailova za prikaz";
         } else return $response;
     }
 
-    public function getMail($mail_id){
+    public function getMail($mail_id)
+    {
         $response = $this->mailRepository->getMailByMailId($mail_id);
-        if ($response == array()){
+        if ($response == array()) {
             return "Nema mailova za prikaz";
         } else return $response;
     }
 
-    public function deleteMail($mail_id){
+    public function deleteMail($mail_id)
+    {
         $response = $this->mailRepository->deleteMail($mail_id);
-        if ($response == 1){
+        if ($response == 1) {
             return "Mail uspješno obrisan";
         } else return $response;
+    }
+
+    public function getMailByKeyWord($user_id, $key_word)
+    {
+        $response = $this->mailRepository->getMailByKeyWord($user_id, $key_word);
+        return $response;
     }
 }

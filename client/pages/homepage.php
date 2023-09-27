@@ -23,7 +23,14 @@
         <div class="content">
             <?php include('../elements/header.php'); ?>
             <div class="filter"></div>
-            <div class="prikaz">
+            <div class="prikaz">  
+                <div class="input-filter" id="input-filter">
+                    <label for="input-keyword">Pretraga po ključnoj riječi</label>
+                    <input id="input-keyword" name="keyword" type="text" value="">
+                    <button id="button-pretrazi" type="button">Pretraži</button>
+                    <button id="button-obrisi" type="button">Obriši</button>
+                </div>
+               
                 <form>
                     <div class="input-container" id="input-container">
                         <div class="input-container input-recipient">
