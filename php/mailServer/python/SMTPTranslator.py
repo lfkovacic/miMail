@@ -6,8 +6,9 @@ import threading
 import sys
 
 # SMTP server configuration
-SMTP_HOST = ''
+SMTP_HOST = ''  # Listen on all available interfaces
 SMTP_PORT = 25
+# Max request duration before interrupt
 TTL = 10
 
 # HTTP server configuration
@@ -38,9 +39,10 @@ def send(client_socket, response):
 def put(client_socket, response):
     client_socket.sendall(response.encode())
 server_socket = None
-server_socket_lock = threading.Lock()
+server_socket_lock = threading.Lock() # Locking the server thread
 running = True
-running_lock = threading.Lock()
+running_lock = threading.Lock() # Locking the running flag
+
 
 # Client socket function
 def handle_smtp_request():
@@ -144,7 +146,6 @@ def stop_server():
     global running
     with running_lock:
         running = False
-
 # Start function for the server socket
 def start_server():
     global server_socket
@@ -158,12 +159,18 @@ def run_smtp_translator():
     # Start the server thread
     server_thread = threading.Thread(target=start_server)
     server_thread.start()
+    server_thread.join()
+
     print(f"SMTP server started: {server_socket}")
 
     try:
+
         while running:
             # Start a client thread for every request
-            handle_smtp_request()
+            client_thread = threading.Thread(target=handle_smtp_request)
+            client_thread.start()
+            client_thread.join(timeout=TTL)
+
     finally:
         # If the server is still running, close it
         if server_socket:
@@ -176,7 +183,6 @@ try:
     run_smtp_translator()
 except KeyboardInterrupt:
     print("Received KeyboardInterrupt. Stopping the SMTP server...")
-    stop_server()
     running_thread.start()
     running_thread.join()
     sys.exit(0)
